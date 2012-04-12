@@ -37,7 +37,7 @@ namespace HorrorMill.Worbs.Entities
 
         void menuItemOptions_Clicked()
         {
-            System.Diagnostics.Debug.WriteLine("clicked Options!");
+            RaiseSwitchScene(SceneType.Options);
         }
 
         public override void Initialize()

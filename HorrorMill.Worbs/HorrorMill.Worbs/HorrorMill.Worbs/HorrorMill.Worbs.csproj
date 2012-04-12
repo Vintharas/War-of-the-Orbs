@@ -72,6 +72,7 @@
     <Compile Include="Entities\GameScene.cs" />
     <Compile Include="Entities\MenuItem.cs" />
     <Compile Include="Entities\MenuScene.cs" />
+    <Compile Include="Entities\OptionsScene.cs" />
     <Compile Include="Entities\Scene.cs" />
     <Compile Include="Entities\SceneType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

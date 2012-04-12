@@ -58,11 +58,19 @@ namespace HorrorMill.Worbs
             switch (scene)
             {
                 case SceneType.Game:
-                    this.Components.Remove(activeScene);
-                    activeScene = new GameScene(this);
-                    this.Components.Add(activeScene);
+                    SwitchScene(new GameScene(this));
+                    break;
+                case SceneType.Options:
+                    SwitchScene(new OptionsScene(this));
                     break;
             }
+        }
+
+        private void SwitchScene(Scene scene)
+        {
+            this.Components.Remove(activeScene);
+            activeScene = scene;
+            this.Components.Add(activeScene);
         }
 
         /// <summary>
