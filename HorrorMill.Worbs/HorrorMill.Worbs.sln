@@ -3,7 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorrorMill.Worbs", "HorrorMill.Worbs\HorrorMill.Worbs\HorrorMill.Worbs.csproj", "{28C70CFA-5EDA-4571-ABFB-35A4267A101B}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "HorrorMill.WorbsContent", "HorrorMill.Worbs\HorrorMill.WorbsContent\HorrorMill.WorbsContent.contentproj", "{AB642EBC-F465-4350-88E8-12DD0E5C4CA8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorrorMill.WorbsContent", "HorrorMill.Worbs\HorrorMill.WorbsContent\HorrorMill.WorbsContent.contentproj", "{AB642EBC-F465-4350-88E8-12DD0E5C4CA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xTile", "xTile", "{1598C59F-A004-4CC4-B5B8-130F02A2FFFE}"
+	ProjectSection(SolutionItems) = preProject
+		libs\xTile.dll = libs\xTile.dll
+		libs\xTile.Pipeline.dll = libs\xTile.Pipeline.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

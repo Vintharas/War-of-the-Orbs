@@ -63,6 +63,9 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Net" />
+    <Reference Include="xTile">
+      <HintPath>..\..\libs\xTile.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Font.cs" />
@@ -93,8 +96,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\HorrorMill.WorbsContent\HorrorMill.WorbsContent.contentproj">
-      <Name>HorrorMill.WorbsContent</Name>
+      <Name>HorrorMill.WorbsContent %28Content%29</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+      <Project>{AB642EBC-F465-4350-88E8-12DD0E5C4CA8}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
