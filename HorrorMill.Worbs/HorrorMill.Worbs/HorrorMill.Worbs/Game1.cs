@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
+using HorrorMill.Worbs.Entities;
 
 namespace HorrorMill.Worbs
 {
@@ -19,6 +20,7 @@ namespace HorrorMill.Worbs
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Scene activeScene;
 
         public Game1()
         {
@@ -39,10 +41,28 @@ namespace HorrorMill.Worbs
         /// and initialize them as well.
         /// </summary>
         protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
+        {           
+            activeScene = new MenuScene(this);
+            activeScene.SwitchScene += OnSwitchScene;
+            this.Components.Add(activeScene);
+
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            this.Services.AddService(typeof(SpriteBatch), spriteBatch);
 
             base.Initialize();
+        }
+
+        private void OnSwitchScene(SceneType scene)
+        {
+            switch (scene)
+            {
+                case SceneType.Game:
+                    this.Components.Remove(activeScene);
+                    activeScene = new GameScene(this);
+                    this.Components.Add(activeScene);
+                    break;
+            }
         }
 
         /// <summary>
@@ -51,8 +71,7 @@ namespace HorrorMill.Worbs
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+
 
             // TODO: use this.Content to load your game content here
         }
@@ -92,7 +111,11 @@ namespace HorrorMill.Worbs
 
             // TODO: Add your drawing code here
 
+            spriteBatch.Begin();
+
             base.Draw(gameTime);
+
+            spriteBatch.End();
         }
     }
 }
