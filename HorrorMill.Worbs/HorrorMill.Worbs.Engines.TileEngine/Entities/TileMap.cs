@@ -12,17 +12,21 @@ namespace HorrorMill.Engines.TileEngine.Entities
         private List<TileSet> tileSets;
         private List<MapLayer> mapLayers;
         private SpriteBatch spriteBatch;
+        private Camera camera;
 
-        public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers) : base(game)
+        public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers, Camera camera)
+            : base(game)
         {
             this.tileSets = tileSets;
             this.mapLayers = mapLayers;
+            this.camera = camera;
         }
 
-        public TileMap(Game game, TileSet tileSet, MapLayer mapLayer) : base(game)
+        public TileMap(Game game, TileSet tileSet, MapLayer mapLayer, Camera camera) : base(game)
         {
             tileSets = new List<TileSet> {tileSet};
             mapLayers = new List<MapLayer> {mapLayer};
+            this.camera = camera;
         }
 
         public override void Initialize()
@@ -48,11 +52,11 @@ namespace HorrorMill.Engines.TileEngine.Entities
             foreach (var layer in mapLayers)
                 for (int y = 0; y < layer.Height; y++)
                 {
-                    destination.Y = y*Engine.TileHeight;
+                    destination.Y = y*Engine.TileHeight - (int)camera.Position.Y;
                     for (int x = 0; x < layer.Width; x++)
                     {
                         tile = layer[x, y];
-                        destination.X = x*Engine.TileWidth;
+                        destination.X = x*Engine.TileWidth - (int)camera.Position.X;
                         spriteBatch.Draw(
                             tileSets[tile.TileSet].Texture,  // Tileset spritesheet
                             destination,                     // Position in the screen where to put the tile

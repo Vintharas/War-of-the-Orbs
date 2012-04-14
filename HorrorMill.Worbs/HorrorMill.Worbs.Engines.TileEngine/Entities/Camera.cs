@@ -1,10 +1,17 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace HorrorMill.Engines.TileEngine.Entities
 {
     public class Camera : GameComponent
     {
-        public Vector2 Position { get; private set; }
+        private Vector2 position;
+        public Vector2 Position
+        {
+            get { return position; }
+            set { position = value; }
+        }
         
         private float speed;
         public float Speed
@@ -31,7 +38,18 @@ namespace HorrorMill.Engines.TileEngine.Entities
 
         public override void Update(GameTime gameTime)
         {
+            if (InputHandler.KeyDown(Keys.Left))
+                position.X -= speed;
+            else if (InputHandler.KeyDown(Keys.Right))
+                position.X += speed;
+
+            if (InputHandler.KeyDown(Keys.Up))
+                position.Y -= speed;
+            else if (InputHandler.KeyDown(Keys.Down))
+                position.Y += speed;
+
             base.Update(gameTime);
         }
+
     }
 }

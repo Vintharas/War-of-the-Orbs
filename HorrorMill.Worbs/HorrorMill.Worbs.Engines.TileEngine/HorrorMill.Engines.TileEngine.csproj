@@ -67,6 +67,12 @@
     <Compile Include="Entities\Tileset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HorrorMill.XRpgLibrary\HorrorMill.Helpers.Xna.csproj">
+      <Project>{FB3F80E6-9D5A-4A00-BE36-B417B6DD5FFC}</Project>
+      <Name>HorrorMill.Helpers.Xna</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--
