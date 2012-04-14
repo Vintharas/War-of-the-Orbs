@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
-namespace HorrorMill.HorrorMill.Helpers.Xna.Input
+namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
     /// <summary>
     /// Class that contains functionality for handling user input
