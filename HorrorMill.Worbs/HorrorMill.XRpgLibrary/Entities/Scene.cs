@@ -1,20 +1,18 @@
 using System;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework;
 
-namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Helpers.Xna.Entities
 {
     public class Scene : DrawableGameComponent
     {
-        public List<DrawableGameComponent> SceneDrawableComponents { get; set; }
         public List<GameComponent> SceneComponents { get; set; }
+        // Each scene defines it's own transitions via this event
         public event Action<SceneType> SwitchScene;
 
         public Scene(Game game) : base(game)
         {
             SceneComponents = new List<GameComponent>();
-            SceneDrawableComponents = new List<DrawableGameComponent>();
         }
 
         public override void Initialize()
@@ -23,12 +21,6 @@ namespace HorrorMill.Worbs.Entities
             {
                 c.Initialize();
             }
-
-            foreach (var d in SceneDrawableComponents)
-            {
-                d.Initialize();
-            }
-
             base.Initialize();
         }
 
@@ -36,22 +28,22 @@ namespace HorrorMill.Worbs.Entities
         {
             foreach (var c in SceneComponents)
             {
-                c.Update(gameTime);
+                if (c.Enabled)
+                    c.Update(gameTime);
             }
-
-            foreach (var d in SceneDrawableComponents)
-            {
-                d.Update(gameTime);
-            }
-
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
-            foreach (var d in SceneDrawableComponents)
+            foreach (var c in SceneComponents)
             {
-                d.Draw(gameTime);
+                if (c is DrawableGameComponent)
+                {
+                    DrawableGameComponent d = c as DrawableGameComponent;
+                    if (d.Visible)
+                        d.Draw(gameTime);
+                }
             }
 
             base.Draw(gameTime);

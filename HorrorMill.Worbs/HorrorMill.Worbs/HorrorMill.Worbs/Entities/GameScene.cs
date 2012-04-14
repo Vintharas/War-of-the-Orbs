@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HorrorMill.Helpers.Xna.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using xTile;
 using xTile.Dimensions;
@@ -16,7 +17,7 @@ namespace HorrorMill.Worbs.Entities
         public GameScene(Game game) : base(game)
         {
             Font gameTitle = new Font(game, "This is The Game", new Vector2(0, 0), Color.Red);
-            SceneDrawableComponents.Add(gameTitle);
+            SceneComponents.Add(gameTitle);
         }
 
         public override void Initialize()

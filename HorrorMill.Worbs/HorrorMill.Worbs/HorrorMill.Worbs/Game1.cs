@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using HorrorMill.Helpers.Xna.Entities;
+using HorrorMill.HorrorMill.Helpers.Xna.Input;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -32,6 +34,10 @@ namespace HorrorMill.Worbs
 
             // Extend battery life under lock.
             InactiveSleepTime = TimeSpan.FromSeconds(1);
+
+            // Main game components
+            Components.Add(new InputHandler(this));
+            Components.Add(new WorbsSceneManager(this));
         }
 
         /// <summary>
@@ -42,35 +48,11 @@ namespace HorrorMill.Worbs
         /// </summary>
         protected override void Initialize()
         {           
-            activeScene = new MenuScene(this);
-            activeScene.SwitchScene += OnSwitchScene;
-            this.Components.Add(activeScene);
-
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Services.AddService(typeof(SpriteBatch), spriteBatch);
 
             base.Initialize();
-        }
-
-        private void OnSwitchScene(SceneType scene)
-        {
-            switch (scene)
-            {
-                case SceneType.Game:
-                    SwitchScene(new GameScene(this));
-                    break;
-                case SceneType.Options:
-                    SwitchScene(new OptionsScene(this));
-                    break;
-            }
-        }
-
-        private void SwitchScene(Scene scene)
-        {
-            this.Components.Remove(activeScene);
-            activeScene = scene;
-            this.Components.Add(activeScene);
         }
 
         /// <summary>

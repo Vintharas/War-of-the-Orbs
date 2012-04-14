@@ -1,4 +1,4 @@
-﻿namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Helpers.Xna.Entities
 {
     public enum SceneType
     {

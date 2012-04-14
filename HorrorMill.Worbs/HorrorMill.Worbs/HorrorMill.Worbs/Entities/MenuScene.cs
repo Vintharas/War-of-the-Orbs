@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using HorrorMill.Helpers.Xna.Entities;
+using HorrorMill.Helpers.Xna.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
@@ -26,7 +28,7 @@ namespace HorrorMill.Worbs.Entities
             menuItems.Add(menuItemOptions);
 
             foreach (MenuItem menuItem in menuItems)
-                SceneDrawableComponents.Add(menuItem);   
+                SceneComponents.Add(menuItem);   
         }
 
         void menuItemStart_Clicked()

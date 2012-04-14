@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using HorrorMill.Helpers.Xna.Entities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace HorrorMill.Worbs.Entities
@@ -10,7 +11,7 @@ namespace HorrorMill.Worbs.Entities
         public OptionsScene(Game game): base(game)
         {
             Font gameTitle = new Font(game, "This is the Options!", new Vector2(0, 0), Color.Red);
-            SceneDrawableComponents.Add(gameTitle);
+            SceneComponents.Add(gameTitle);
         }
 
         public override void Initialize()

@@ -2,9 +2,9 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Helpers.Xna.Entities
 {
-    class Font : DrawableGameComponent
+   public class Font : DrawableGameComponent
     {
         SpriteFont font;
         SpriteBatch spriteBatch;
