@@ -1,16 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using HorrorMill.Helpers.Xna.Entities;
-using HorrorMill.HorrorMill.Helpers.Xna.Input;
+using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
-using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using Microsoft.Xna.Framework.Media;
 using HorrorMill.Worbs.Entities;
 
 namespace HorrorMill.Worbs
