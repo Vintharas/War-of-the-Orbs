@@ -24,7 +24,8 @@ namespace HorrorMill.Engines.TileEngine.Entities
             get { return (Rectangle[])sourceRectangles.Clone(); }
         }
 
-        public TileSet(Game game, string textureName, int tileWidth, int tileHeight, int tilesWide, int tilesHigh) : base(game)
+        public TileSet(Game game, string textureName, int tilesWide, int tilesHigh, int tileWidth, int tileHeight)
+            : base(game)
         {
             this.textureName = textureName;
             TileWidth = tileWidth;

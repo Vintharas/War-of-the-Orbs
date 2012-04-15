@@ -38,17 +38,29 @@ namespace HorrorMill.Engines.TileEngine.Entities
 
         public override void Update(GameTime gameTime)
         {
+            Vector2 motion = Vector2.Zero;
+
             if (InputHandler.KeyDown(Keys.Left))
-                position.X -= speed;
+                motion.X--;
             else if (InputHandler.KeyDown(Keys.Right))
-                position.X += speed;
-
+                motion.X++;
             if (InputHandler.KeyDown(Keys.Up))
-                position.Y -= speed;
+                motion.Y--;
             else if (InputHandler.KeyDown(Keys.Down))
-                position.Y += speed;
+                motion.Y++;
+            if (motion != Vector2.Zero)
+                motion.Normalize(); // to avoid that the camera moves faster diagonally than horizontally or vertically
 
+            position += motion*speed;
+
+            LockCamera();
             base.Update(gameTime);
+        }
+
+        private void LockCamera()
+        {
+            position.X = MathHelper.Clamp(position.X, 0, TileMap.WidthInPixels - viewPortRectangle.Width);
+            position.Y = MathHelper.Clamp(position.Y, 0, TileMap.HeightInPixels - viewPortRectangle.Height);
         }
 
     }
