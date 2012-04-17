@@ -3,7 +3,12 @@ using System.Collections.Generic;
 using HorrorMill.Engines.TileEngine;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Entities;
+using HorrorMill.Helpers.Xna.UI;
+using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace HorrorMill.Worbs.Entities
 {
@@ -13,11 +18,15 @@ namespace HorrorMill.Worbs.Entities
         private Engine engine = new Engine(32, 32);
         private TileMap map;
         private Player player;
+        private Camera camera;
+        private CrossControl crossControl;
+
 
         public GameScene(Game game): base(game)
         {
+
             // Initialize map settings
-            Camera camera = new Camera(game, new Rectangle(0, 0, 800, 480)); // TODO: Fix this so it is not hardcoded -> GraphicsDevice is not initialized at this point, need to wrap it somehow (perhaps add it as a service) so the camera will access it later when it's initialized 
+            camera = new Camera(game, new Rectangle(0, 0, 800, 480)); // TODO: Fix this so it is not hardcoded -> GraphicsDevice is not initialized at this point, need to wrap it somehow (perhaps add it as a service) so the camera will access it later when it's initialized 
 
             // tilesets
             TileSet tileSet1 = new TileSet(Game, @"TileSheets\tileset1", 8, 8, 32, 32);
@@ -47,12 +56,23 @@ namespace HorrorMill.Worbs.Entities
             map = new TileMap(Game, tileSets, mapLayers, camera);
 
             Font gameTitle = new Font(game, "This is the Game Scene!", new Vector2(0, 0), Color.Red);
+
+            crossControl = new CrossControl(game);
+
             // Player
             player = new Player(game, camera);
             SceneComponents.Add(map);
             SceneComponents.Add(gameTitle);
             SceneComponents.Add(player);
+            SceneComponents.Add(crossControl);
         }
+
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            camera.MoveCamera(crossControl.Motion);
+        }
+
 
     }
 }

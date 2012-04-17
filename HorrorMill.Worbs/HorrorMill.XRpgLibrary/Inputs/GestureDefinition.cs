@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
-    class GestureDefinition
+    public class GestureDefinition
     {
         public GestureType Type;
         public Rectangle CollisionArea;

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Content;
 
 namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
-    class TouchIndicator
+    public class TouchIndicator
     {
         int alphaValue = 255;
         public int TouchID;

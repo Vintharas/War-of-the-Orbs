@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
-    class GameInput
+    public class GameInput
     {
         Dictionary<string, Input> Inputs = new Dictionary<string, Input>();
 

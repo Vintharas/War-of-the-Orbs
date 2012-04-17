@@ -8,7 +8,7 @@ using Microsoft.Devices.Sensors;
 
 namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
-    class Input
+    public class Input
     {
         Dictionary<Keys, bool> keyboardInputs = new Dictionary<Keys, bool>();
         Dictionary<Buttons, bool> gamepadInputs = new Dictionary<Buttons, bool>();

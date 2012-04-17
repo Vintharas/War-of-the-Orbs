@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
-    class TouchIndicatorCollection
+    public class TouchIndicatorCollection
     {
         List<TouchIndicator> touchPositions = new List<TouchIndicator>();
 
