@@ -6,14 +6,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorrorMill.WorbsContent", "HorrorMill.Worbs\HorrorMill.WorbsContent\HorrorMill.WorbsContent.contentproj", "{AB642EBC-F465-4350-88E8-12DD0E5C4CA8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xTile", "xTile", "{1598C59F-A004-4CC4-B5B8-130F02A2FFFE}"
-	ProjectSection(SolutionItems) = preProject
-		libs\xTile.dll = libs\xTile.dll
-		libs\xTile.Pipeline.dll = libs\xTile.Pipeline.dll
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorrorMill.Helpers.Xna", "HorrorMill.XRpgLibrary\HorrorMill.Helpers.Xna.csproj", "{FB3F80E6-9D5A-4A00-BE36-B417B6DD5FFC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorrorMill.Engines.Rpg", "HorrorMill.RpgLibrary\HorrorMill.Engines.Rpg.csproj", "{1F3970C0-410A-4C9B-803F-A6658E1402C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HorrorMill.Engines.TileEngine", "HorrorMill.Worbs.Engines.TileEngine\HorrorMill.Engines.TileEngine.csproj", "{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,6 +35,10 @@ Global
 		{1F3970C0-410A-4C9B-803F-A6658E1402C1}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
 		{1F3970C0-410A-4C9B-803F-A6658E1402C1}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
 		{1F3970C0-410A-4C9B-803F-A6658E1402C1}.Release|Windows Phone.Build.0 = Release|Windows Phone
+		{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}.Debug|Windows Phone.ActiveCfg = Debug|Windows Phone
+		{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}.Debug|Windows Phone.Build.0 = Debug|Windows Phone
+		{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}.Release|Windows Phone.ActiveCfg = Release|Windows Phone
+		{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}.Release|Windows Phone.Build.0 = Release|Windows Phone
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

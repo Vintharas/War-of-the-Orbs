@@ -5,6 +5,7 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 {
     /// <summary>
     /// Class that contains functionality for handling user input
+    /// TODO: This class is temporary. When debugging is useful to use the keyboard to move around the screen. In the future we'll probably use the Input class instead
     /// </summary>
     public class InputHandler : GameComponent
     {

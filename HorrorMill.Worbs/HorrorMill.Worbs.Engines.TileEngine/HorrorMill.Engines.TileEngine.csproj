@@ -1,32 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <ProjectGuid>{28C70CFA-5EDA-4571-ABFB-35A4267A101B}</ProjectGuid>
+    <ProjectGuid>{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}</ProjectGuid>
     <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">Windows Phone</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HorrorMill.Worbs</RootNamespace>
-    <AssemblyName>HorrorMill.Worbs</AssemblyName>
+    <RootNamespace>HorrorMill.Engines.TileEngine</RootNamespace>
+    <AssemblyName>HorrorMill.Engines.TileEngine</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
     <XnaPlatform>Windows Phone</XnaPlatform>
     <XnaProfile>Reach</XnaProfile>
-    <XnaCrossPlatformGroupID>40794cc0-dbe4-465a-a8f3-e745df80e351</XnaCrossPlatformGroupID>
-    <XnaOutputType>Game</XnaOutputType>
+    <XnaCrossPlatformGroupID>a44aae50-2d0c-4f3d-a59f-51e8391ed5eb</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
     <XnaRefreshLevel>1</XnaRefreshLevel>
-    <WPTombstoneEnabled>false</WPTombstoneEnabled>
-    <XapFilename>$(AssemblyName).xap</XapFilename>
-    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
-    <XnaWindowsPhoneManifestTemplate>Properties\WMAppManifest.xml</XnaWindowsPhoneManifestTemplate>
-    <TileImage>Background.png</TileImage>
-    <TileTitle>HorrorMill.Worbs</TileTitle>
-    <SupportedCultures>
-    </SupportedCultures>
-    <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>PhoneGameThumb.png</Thumbnail>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|Windows Phone' ">
     <DebugSymbols>true</DebugSymbols>
@@ -60,48 +50,27 @@
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\GameScene.cs" />
-    <Compile Include="Entities\MenuScene.cs" />
-    <Compile Include="Entities\OptionsScene.cs" />
-    <Compile Include="Entities\Player.cs" />
-    <Compile Include="Entities\WorbsSceneManager.cs" />
+    <Compile Include="Engine.cs" />
+    <Compile Include="Entities\Camera.cs" />
+    <Compile Include="Entities\MapLayer.cs" />
+    <Compile Include="Entities\Tile.cs" />
+    <Compile Include="Entities\TileMap.cs" />
+    <Compile Include="Entities\Tileset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <None Include="Properties\AppManifest.xml">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
-    </None>
-    <None Include="Properties\WMAppManifest.xml">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
-    </None>
-    <Compile Include="Program.cs" />
-    <Compile Include="Game1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Game.ico" />
-    <Content Include="PhoneGameThumb.png">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
-    </Content>
-    <Content Include="Background.png">
-      <XnaPlatformSpecific>true</XnaPlatformSpecific>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\HorrorMill.Worbs.Engines.TileEngine\HorrorMill.Engines.TileEngine.csproj">
-      <Project>{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}</Project>
-      <Name>HorrorMill.Engines.TileEngine</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\HorrorMill.XRpgLibrary\HorrorMill.Helpers.Xna.csproj">
+    <ProjectReference Include="..\HorrorMill.XRpgLibrary\HorrorMill.Helpers.Xna.csproj">
       <Project>{FB3F80E6-9D5A-4A00-BE36-B417B6DD5FFC}</Project>
       <Name>HorrorMill.Helpers.Xna</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HorrorMill.WorbsContent\HorrorMill.WorbsContent.contentproj">
-      <Name>HorrorMill.WorbsContent %28Content%29</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-      <Project>{AB642EBC-F465-4350-88E8-12DD0E5C4CA8}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
