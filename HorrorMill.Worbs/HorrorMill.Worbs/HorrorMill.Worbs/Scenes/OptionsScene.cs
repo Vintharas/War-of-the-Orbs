@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using HorrorMill.Engines.TileEngine;
-using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Entities;
 using Microsoft.Xna.Framework;
 
-namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Worbs.Scenes
 {
     public class OptionsScene : Scene
     {

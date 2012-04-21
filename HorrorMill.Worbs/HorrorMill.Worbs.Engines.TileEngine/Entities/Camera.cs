@@ -36,17 +36,17 @@ namespace HorrorMill.Engines.TileEngine.Entities
             Zoom = 1f;
         }
 
-        public void MoveCamera(Vector2 motion)
+        public void Move(Vector2 motion)
         {
             if (motion != Vector2.Zero)
                 motion.Normalize(); // to avoid that the camera moves faster diagonally than horizontally or vertically
 
             position += motion*speed;
 
-            LockCamera();
+            Lock();
         }
 
-        private void LockCamera()
+        private void Lock()
         {
             position.X = MathHelper.Clamp(position.X, 0, TileMap.WidthInPixels - viewPortRectangle.Width);
             position.Y = MathHelper.Clamp(position.Y, 0, TileMap.HeightInPixels - viewPortRectangle.Height);

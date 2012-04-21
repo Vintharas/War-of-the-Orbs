@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using HorrorMill.Helpers.Xna.Entities;
 using HorrorMill.Helpers.Xna.UI;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input.Touch;
 
-namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Worbs.Scenes
 {
     class MenuScene : Scene
     {

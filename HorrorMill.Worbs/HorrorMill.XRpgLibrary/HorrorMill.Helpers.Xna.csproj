@@ -71,6 +71,11 @@
     <Compile Include="Inputs\TouchIndicator.cs" />
     <Compile Include="Inputs\TouchIndicatorCollection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sprites\DrawablePosition.cs" />
+    <Compile Include="Sprites\MultiSprite.cs" />
+    <Compile Include="Sprites\NonAnimatedSprite.cs" />
+    <Compile Include="Sprites\SpriteDirection.cs" />
+    <Compile Include="Sprites\SpriteSheet.cs" />
     <Compile Include="UI\Control.cs" />
     <Compile Include="UI\CrossControl.cs" />
     <Compile Include="UI\MenuItem.cs" />

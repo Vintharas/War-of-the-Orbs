@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+using HorrorMill.Engines.Rpg;
 using HorrorMill.Engines.TileEngine;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Entities;
 using HorrorMill.Helpers.Xna.UI;
-using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
+using HorrorMill.Worbs.Entities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
-using HorrorMill.Engines.Rpg;
 
-namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Worbs.Scenes
 {
     public class GameScene : Scene
     {
@@ -45,8 +40,9 @@ namespace HorrorMill.Worbs.Entities
 
         public override void Update(GameTime gameTime)
         {
+            player.Move(crossControl.Motion);
             base.Update(gameTime);
-            camera.MoveCamera(crossControl.Motion);
+            camera.Move(crossControl.Motion);
         }
 
 

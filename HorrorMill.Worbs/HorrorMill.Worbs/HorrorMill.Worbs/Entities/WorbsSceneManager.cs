@@ -1,4 +1,5 @@
 ﻿using HorrorMill.Helpers.Xna.Entities;
+using HorrorMill.Worbs.Scenes;
 using Microsoft.Xna.Framework;
 
 namespace HorrorMill.Worbs.Entities

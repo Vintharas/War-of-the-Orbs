@@ -1,3 +1,10 @@
 Content\Fonts\MenuItem.xnb
 Content\TileSheets\tileset1.xnb
 Content\TileSheets\tileset2.xnb
+Content\SpriteSheets\Player\Wizard\Walk.xnb
+Content\SpriteSheets\Player\Wizard\IdleDown.xnb
+Content\SpriteSheets\Player\Wizard\IdleLeft.xnb
+Content\SpriteSheets\Player\Wizard\IdleRight.xnb
+Content\SpriteSheets\Player\Wizard\IdleUp.xnb
+Content\SpriteSheets\Player\Wizard\WalkDown.xnb
+Content\SpriteSheets\Player\Wizard\WalkUp.xnb

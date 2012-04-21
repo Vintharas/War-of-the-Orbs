@@ -53,6 +53,49 @@
   <ItemGroup>
     <Folder Include="Maps\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteSheets\Player\Wizard\IdleDown.png">
+      <Name>IdleDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteSheets\Player\Wizard\Walk.png">
+      <Name>Walk</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteSheets\Player\Wizard\IdleLeft.png">
+      <Name>IdleLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SpriteSheets\Player\Wizard\IdleRight.PNG">
+      <Name>IdleRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SpriteSheets\Player\Wizard\IdleUp.png">
+      <Name>IdleUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="SpriteSheets\Player\Wizard\WalkDown.png">
+      <Name>WalkDown</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteSheets\Player\Wizard\WalkUp.png">
+      <Name>WalkUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
