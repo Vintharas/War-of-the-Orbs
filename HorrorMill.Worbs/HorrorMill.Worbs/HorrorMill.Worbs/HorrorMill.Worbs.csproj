@@ -90,6 +90,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\HorrorMill.RpgLibrary\HorrorMill.Engines.Rpg.csproj">
+      <Project>{1F3970C0-410A-4C9B-803F-A6658E1402C1}</Project>
+      <Name>HorrorMill.Engines.Rpg</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\HorrorMill.Worbs.Engines.TileEngine\HorrorMill.Engines.TileEngine.csproj">
       <Project>{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}</Project>
       <Name>HorrorMill.Engines.TileEngine</Name>
