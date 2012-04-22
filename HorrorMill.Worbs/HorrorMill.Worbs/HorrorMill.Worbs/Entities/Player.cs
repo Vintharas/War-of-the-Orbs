@@ -23,9 +23,10 @@ namespace HorrorMill.Worbs.Entities
             Attack
         }
 
-        public Camera Camera { get; set; }
         private MultiSprite multiSprite;
         private SpriteBatch spriteBatch;
+        public Camera Camera { get; set; }
+        public Rectangle Rectangle { get { return multiSprite.Rectangle; } }
 
         public Player(Game game) : this(game, new Camera(game, game.GraphicsDevice.Viewport.Bounds)){}
 
@@ -61,7 +62,7 @@ namespace HorrorMill.Worbs.Entities
 
         public override void Draw(GameTime gameTime)
         {
-            multiSprite.Draw(gameTime, spriteBatch);
+            multiSprite.Draw(gameTime, spriteBatch, Camera.Position);
             base.Draw(gameTime);
         }
 
@@ -88,9 +89,20 @@ namespace HorrorMill.Worbs.Entities
 
                 motion.Normalize();
                 motion = motion*Camera.Speed;
+                motion = LockToMap(motion);
                 multiSprite.Move((int)motion.X, (int)motion.Y);
             }
         }
 
+        private Vector2 LockToMap(Vector2 motion)
+        {
+            // Refactor this! Probably should handle position either in the multisprite or in the player
+            // this code is basically calculating the amount of motion possible that doesn't get the player sprite out of the window
+            Vector2 previousPosition = multiSprite.Position;
+            Vector2 newPosition = previousPosition + motion;
+            newPosition.X = MathHelper.Clamp(newPosition.X, 0, TileMap.WidthInPixels - multiSprite.Rectangle.Width);
+            newPosition.Y = MathHelper.Clamp(newPosition.Y, 0, TileMap.HeightInPixels - multiSprite.Rectangle.Height);
+            return newPosition - previousPosition;
+        }
     }
 }

@@ -15,11 +15,12 @@ namespace HorrorMill.Helpers.Xna.Sprites
 
         private string currentState;
         public string CurrentState 
-            {
-                get { return currentState; }
-                set { 
-                    PreviousState = CurrentState;
-                    currentState = value;
+        {
+            get { return currentState; }
+            set 
+            { 
+                PreviousState = CurrentState;
+                currentState = value;
             } 
         }
         public string PreviousState { get; private set; }
@@ -33,8 +34,7 @@ namespace HorrorMill.Helpers.Xna.Sprites
         private readonly int millisecondsPerFrame;
         private int timeSinceLastFrame;
 
-        // Gets the collision rect based on position, framesize and collision offset
-        public Rectangle collisionRect
+        public Rectangle Rectangle
         {
             get
             {
@@ -45,8 +45,11 @@ namespace HorrorMill.Helpers.Xna.Sprites
                     (int)(FrameSize.Y));
             }
         }
+        // Gets the collision rect based on position, framesize and collision offset
+        public Rectangle CollisionRect { get { return Rectangle; } }
+
         // Get current position of the sprite
-        public Vector2 GetPosition
+        public Vector2 Position
         {
             get { return position; }
         }
@@ -99,7 +102,8 @@ namespace HorrorMill.Helpers.Xna.Sprites
         /// </summary>
         /// <param name="gameTime"></param>
         /// <param name="spriteBatch"></param>
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        /// <param name="vector2"> </param>
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 cameraPosition)
         {
             SpriteEffects spriteEffect = SpriteEffects.None;
             if ((CurrentSheet.SpriteDirection == SpriteDirection.Left && movementDirection == SpriteDirection.Right)
@@ -107,7 +111,7 @@ namespace HorrorMill.Helpers.Xna.Sprites
                 spriteEffect = SpriteEffects.FlipHorizontally;
      
             spriteBatch.Draw(TextureImage,
-                             position,
+                             position - cameraPosition,
                              new Rectangle(CurrentFrame.X*FrameSize.X,
                                            CurrentFrame.Y*FrameSize.Y,
                                            FrameSize.X, FrameSize.Y),

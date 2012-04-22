@@ -41,8 +41,8 @@ namespace HorrorMill.Worbs.Scenes
         public override void Update(GameTime gameTime)
         {
             player.Move(crossControl.Motion);
+            camera.LockToSpriteRectangle(player.Rectangle);
             base.Update(gameTime);
-            camera.Move(crossControl.Motion);
         }
 
 

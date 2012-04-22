@@ -84,11 +84,11 @@ namespace HorrorMill.Engines.TileEngine.Entities
             foreach (var layer in mapLayers)
                 for (int y = 0; y < layer.Height; y++)
                 {
-                    destination.Y = y*Engine.TileHeight - (int)camera.Position.Y;
+                    destination.Y = y * Engine.TileHeight - (int)camera.Position.Y;
                     for (int x = 0; x < layer.Width; x++)
                     {
                         tile = layer[x, y];
-                        destination.X = x*Engine.TileWidth - (int)camera.Position.X;
+                        destination.X = x * Engine.TileWidth - (int)camera.Position.X;
                         spriteBatch.Draw(
                             tileSets[tile.TileSet].Texture,  // Tileset spritesheet
                             destination,                     // Position in the screen where to put the tile

@@ -13,6 +13,12 @@ namespace HorrorMill.Helpers.Xna.UI
         private Rectangle DownControlRectangle = new Rectangle(70, 410, 60, 60);
         private Rectangle UpControlRectangle = new Rectangle(70, 290, 60, 60);
         private Rectangle RightControlRectangle = new Rectangle(130, 350, 60, 60);
+
+        private Rectangle LeftDownRectangle = new Rectangle(10, 410, 60, 60);
+        private Rectangle RightDownRectangle = new Rectangle(130, 410, 60, 60);
+        private Rectangle RightUpRectangle = new Rectangle(130, 290, 60, 60);
+        private Rectangle LeftUpRectangle = new Rectangle(10, 290, 60, 60);
+
         private SpriteBatch spriteBatch;
 
         private Vector2 motion;
@@ -30,6 +36,11 @@ namespace HorrorMill.Helpers.Xna.UI
             gameInput.AddTouchTapInput("MoveDown", DownControlRectangle, false);
             gameInput.AddTouchTapInput("MoveUp", UpControlRectangle, false);
             gameInput.AddTouchTapInput("MoveRight", RightControlRectangle, false);
+
+            gameInput.AddTouchTapInput("MoveLeftDown", LeftDownRectangle, false);
+            gameInput.AddTouchTapInput("MoveRightDown", RightDownRectangle, false);
+            gameInput.AddTouchTapInput("MoveRightUp", RightUpRectangle, false);
+            gameInput.AddTouchTapInput("MoveLeftUp", LeftUpRectangle, false);
         }
 
 
@@ -46,6 +57,8 @@ namespace HorrorMill.Helpers.Xna.UI
             motion = Vector2.Zero;
 
             gameInput.BeginUpdate();
+            // Since they are touch taps, they will be in a given specific position,
+            // so they will only affect one rectangle! (Refactor)
             if (gameInput.IsPressed("MoveLeft"))
                 motion.X--;
             else if (gameInput.IsPressed("MoveRight"))
@@ -55,6 +68,29 @@ namespace HorrorMill.Helpers.Xna.UI
                 motion.Y--;
             else if (gameInput.IsPressed("MoveDown"))
                 motion.Y++;
+
+            if (gameInput.IsPressed("MoveLeftUp"))
+            {
+                motion.Y--;
+                motion.X--;
+            }
+            else if (gameInput.IsPressed("MoveRightDown"))
+            {
+                motion.Y++;
+                motion.X++;
+            }
+
+            if (gameInput.IsPressed("MoveRightUp"))
+            {
+                motion.Y--;
+                motion.X++;
+            }
+            else if (gameInput.IsPressed("MoveLeftDown"))
+            {
+                motion.Y++;
+                motion.X--;
+            }
+            
             gameInput.EndUpdate();
             base.Update(gameTime);
         }
