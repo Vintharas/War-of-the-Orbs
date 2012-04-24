@@ -73,7 +73,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="SpriteSheets\Player\Wizard\IdleRight.PNG">
+    <Compile Include="SpriteSheets\Player\Wizard\IdleRight.png">
       <Name>IdleRight</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -92,6 +92,13 @@
   <ItemGroup>
     <Compile Include="SpriteSheets\Player\Wizard\WalkUp.png">
       <Name>WalkUp</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SpriteSheets\Projectiles\fire.png">
+      <Name>fire</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

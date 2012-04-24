@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Font.cs" />
+    <Compile Include="Entities\Projectile.cs" />
     <Compile Include="Entities\Scene.cs" />
     <Compile Include="Entities\SceneManager.cs" />
     <Compile Include="Entities\SceneType.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Sprites\NonAnimatedSprite.cs" />
     <Compile Include="Sprites\SpriteDirection.cs" />
     <Compile Include="Sprites\SpriteSheet.cs" />
+    <Compile Include="UI\AttackControl.cs" />
     <Compile Include="UI\Control.cs" />
     <Compile Include="UI\CrossControl.cs" />
     <Compile Include="UI\MenuItem.cs" />

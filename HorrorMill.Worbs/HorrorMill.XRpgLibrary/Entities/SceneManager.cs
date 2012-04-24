@@ -7,6 +7,7 @@ namespace HorrorMill.Helpers.Xna.Entities
     {
         private Dictionary<SceneType, Scene> scenes;
         private Scene activeScene;
+
         public Scene ActiveScene
         {
             get { return activeScene; }
@@ -39,15 +40,15 @@ namespace HorrorMill.Helpers.Xna.Entities
 
         private void OnSwitchScene(SceneType sceneType)
         {
+            foreach (var s in scenes.Values)
+                if(s.Type == sceneType)
+                    s.Initialize();
+
             SetActiveScene(sceneType);
         }
 
         public override void Initialize()
         {
-            // TODO: This basically initializes and loads content of all scenes of the game when 
-            // the game is loading. This may not be very good performance wise -> Test
-            foreach (var s in scenes.Values)
-                s.Initialize();
             base.Initialize();
         }
 

@@ -25,8 +25,12 @@ namespace HorrorMill.Worbs.Entities
 
         private MultiSprite multiSprite;
         private SpriteBatch spriteBatch;
+
         public Camera Camera { get; set; }
+        public Vector2 Position { get { return multiSprite.Position; } }
         public Rectangle Rectangle { get { return multiSprite.Rectangle; } }
+        public Vector2 PositionMiddleCenter { get { return new Vector2(Position.X + Rectangle.Width/2, Position.Y + Rectangle.Height/2); }}
+
 
         public Player(Game game) : this(game, new Camera(game, game.GraphicsDevice.Viewport.Bounds)){}
 

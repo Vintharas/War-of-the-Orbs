@@ -12,6 +12,7 @@ namespace HorrorMill.Worbs.Entities
             AddScene(SceneType.Game, new GameScene(game));
             AddScene(SceneType.Options, new OptionsScene(game));
             SetActiveScene(SceneType.Menu);
+            ActiveScene.Initialize(); //First scene must be initialized
         }
     }
 }

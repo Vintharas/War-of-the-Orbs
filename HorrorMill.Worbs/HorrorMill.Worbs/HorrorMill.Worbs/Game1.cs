@@ -15,7 +15,7 @@ namespace HorrorMill.Worbs
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        private Scene activeScene;
+        //private Scene activeScene;
 
         public Game1()
         {
@@ -28,10 +28,6 @@ namespace HorrorMill.Worbs
 
             // Extend battery life under lock.
             InactiveSleepTime = TimeSpan.FromSeconds(1);
-
-            // Main game components
-            Components.Add(new InputHandler(this));
-            Components.Add(new WorbsSceneManager(this));
         }
 
         /// <summary>
@@ -45,6 +41,10 @@ namespace HorrorMill.Worbs
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             this.Services.AddService(typeof(SpriteBatch), spriteBatch);
+
+            // Main game components
+            Components.Add(new InputHandler(this));
+            Components.Add(new WorbsSceneManager(this));
 
             base.Initialize();
         }

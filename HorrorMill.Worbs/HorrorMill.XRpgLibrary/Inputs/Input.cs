@@ -17,20 +17,15 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
         Dictionary<int, GestureDefinition> gestureInputs = new Dictionary<int, GestureDefinition>();
         Dictionary<Direction, float> accelerometerInputs = new Dictionary<Direction, float>();
 
-        static public Dictionary<PlayerIndex, GamePadState> CurrentGamePadState
-    = new Dictionary<PlayerIndex, GamePadState>();
-        static public Dictionary<PlayerIndex, GamePadState> PreviousGamePadState
-            = new Dictionary<PlayerIndex, GamePadState>();
-
+        static public Dictionary<PlayerIndex, GamePadState> CurrentGamePadState = new Dictionary<PlayerIndex, GamePadState>();
+        static public Dictionary<PlayerIndex, GamePadState> PreviousGamePadState = new Dictionary<PlayerIndex, GamePadState>();
 
         static public TouchCollection CurrentTouchLocationState;
         static public TouchCollection PreviousTouchLocationState;
         static public KeyboardState CurrentKeyboardState;
         static public KeyboardState PreviousKeyboardState;
 
-        static public Dictionary<PlayerIndex, bool> GamepadConnectionState
-    = new Dictionary<PlayerIndex, bool>();
-
+        public static Dictionary<PlayerIndex, bool> GamepadConnectionState = new Dictionary<PlayerIndex, bool>();
         static private List<GestureDefinition> detectedGestures = new List<GestureDefinition>();
 
 
@@ -93,7 +88,6 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
                 GestureSample gesture = TouchPanel.ReadGesture();
                 detectedGestures.Add(new GestureDefinition(gesture));
             }
-
         }
 
         static public void EndUpdate()

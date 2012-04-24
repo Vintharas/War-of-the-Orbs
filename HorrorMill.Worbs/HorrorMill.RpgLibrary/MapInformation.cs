@@ -10,8 +10,8 @@ namespace HorrorMill.Engines.Rpg
         public List<TileSet> TileSets;
         public List<Enemy> Enemies;
         public int NumberOfDecorativeObjects;
-        public int Width;
-        public int Height;
+        public int TileWidth;
+        public int TileHeight;
         private Game baseGame;
         public enum MapLayerEnum { Ground, Decorations, Enemies, Sky };
 
@@ -23,8 +23,8 @@ namespace HorrorMill.Engines.Rpg
             Enemies = new List<Enemy>();
 
             NumberOfDecorativeObjects = 80;
-            Width = 40;
-            Height = 40;
+            TileWidth = 40;
+            TileHeight = 40;
         }
 
         public void LoadMapFromXML(string mapName)
