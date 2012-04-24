@@ -30,6 +30,7 @@ namespace HorrorMill.Worbs.Entities
         public Vector2 Position { get { return multiSprite.Position; } }
         public Rectangle Rectangle { get { return multiSprite.Rectangle; } }
         public Vector2 PositionMiddleCenter { get { return new Vector2(Position.X + Rectangle.Width/2, Position.Y + Rectangle.Height/2); }}
+        public Vector2 Direction { get; set; }
 
 
         public Player(Game game) : this(game, new Camera(game, game.GraphicsDevice.Viewport.Bounds)){}
@@ -84,6 +85,7 @@ namespace HorrorMill.Worbs.Entities
             }
             else // otherwise update the sprite to reflect the player action
             {
+                Direction = motion;
                 if (motion.Y > 0)
                     multiSprite.CurrentState = State.WalkDown.ToString();
                 else

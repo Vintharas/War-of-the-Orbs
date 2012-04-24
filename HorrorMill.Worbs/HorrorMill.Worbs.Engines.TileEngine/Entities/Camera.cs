@@ -48,9 +48,7 @@ namespace HorrorMill.Engines.TileEngine.Entities
             
             if (motion != Vector2.Zero)
                 motion.Normalize(); // to avoid that the camera moves faster diagonally than horizontally or vertically
-
             position += motion*speed;
-
             Lock();
         }
 

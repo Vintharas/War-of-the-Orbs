@@ -1,16 +1,17 @@
-using System;
+using HorrorMill.Engines.TileEngine.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace HorrorMill.Helpers.Xna.Entities
+namespace HorrorMill.Engines.Rpg.Entities
 {
     public class Projectile : DrawableGameComponent
     {
         private Texture2D texture;
         private readonly string textureName;
+        private readonly Camera camera;
         private Vector2 position;
         private Viewport viewport;
-        private float speed;
+        private Vector2 speed;
 
         private SpriteBatch spriteBatch;
 
@@ -20,14 +21,16 @@ namespace HorrorMill.Helpers.Xna.Entities
         public int Height{ get { return this.texture.Height; } }
 
 
-        public Projectile(Game game, string textureName, Vector2 position, int damage, float speed) : base(game)
+        public Projectile(Game game, string textureName, Vector2 position, int damage, Vector2 speed, Camera camera) : base(game)
         {
             this.textureName = textureName;
             this.position = position;
             this.viewport = game.GraphicsDevice.Viewport;
             Damage = damage;
             this.speed = speed;
+            this.camera = camera;
             Active = true;
+            speed.Normalize();
         }
 
         protected override void LoadContent()
@@ -39,20 +42,26 @@ namespace HorrorMill.Helpers.Xna.Entities
 
         public override void Update(GameTime gameTime)
         {
-            // Projectiles always move to the right
-            this.position.X += this.speed;
+            position += speed;
 
             // Deactivate the bullet if it goes out of screen
             // TODO: This may not be true, we can allow it to continue and hit enemies that are not
             // seen by the player but that are there. (like in realms of the mad god)
-            if (this.position.X + this.texture.Width / 2 > viewport.Width)
-                Active = false;
+            Active = IsWithinScreenBoundaries();
+        }
+
+        private bool IsWithinScreenBoundaries()
+        {
+            return position.X - camera.Position.X > 0 &&
+                   position.X + texture.Width/2 - camera.Position.X < viewport.Width &&
+                   position.Y - camera.Position.Y > 0 &&
+                   position.Y + texture.Height/2 - camera.Position.Y < viewport.Height;
         }
 
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Draw(this.texture, 
-                            this.position, // Position where to draw projectile
+                            this.position - camera.Position, // Position where to draw projectile
                             null, // null draws the full texture (we need to modify this if we want to have projectiles that animate)
                             Color.White, 0f, new Vector2(Width / 2, Height / 2), 1f, SpriteEffects.None, 0f);
             base.Draw(gameTime);

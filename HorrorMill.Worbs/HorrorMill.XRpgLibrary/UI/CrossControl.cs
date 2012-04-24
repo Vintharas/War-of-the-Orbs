@@ -57,19 +57,17 @@ namespace HorrorMill.Helpers.Xna.UI
             motion = Vector2.Zero;
 
             gameInput.BeginUpdate();
-            // Since they are touch taps, they will be in a given specific position,
-            // so they will only affect one rectangle! (Refactor)
+
+            
             if (gameInput.IsPressed("MoveLeft"))
                 motion.X--;
             else if (gameInput.IsPressed("MoveRight"))
                 motion.X++;
-
-            if (gameInput.IsPressed("MoveUp"))
+            else if (gameInput.IsPressed("MoveUp"))
                 motion.Y--;
             else if (gameInput.IsPressed("MoveDown"))
                 motion.Y++;
-
-            if (gameInput.IsPressed("MoveLeftUp"))
+            else if (gameInput.IsPressed("MoveLeftUp"))
             {
                 motion.Y--;
                 motion.X--;
@@ -79,8 +77,7 @@ namespace HorrorMill.Helpers.Xna.UI
                 motion.Y++;
                 motion.X++;
             }
-
-            if (gameInput.IsPressed("MoveRightUp"))
+            else if (gameInput.IsPressed("MoveRightUp"))
             {
                 motion.Y--;
                 motion.X++;

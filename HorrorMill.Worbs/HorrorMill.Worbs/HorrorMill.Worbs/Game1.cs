@@ -15,7 +15,6 @@ namespace HorrorMill.Worbs
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        //private Scene activeScene;
 
         public Game1()
         {
@@ -23,6 +22,7 @@ namespace HorrorMill.Worbs
             Content.RootDirectory = "Content";
 
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
+            graphics.IsFullScreen = true; // so the status bar is not shown
             // Frame rate is 30 fps by default for Windows Phone.
             TargetElapsedTime = TimeSpan.FromTicks(333333);
 
@@ -55,8 +55,6 @@ namespace HorrorMill.Worbs
         /// </summary>
         protected override void LoadContent()
         {
-
-
             // TODO: use this.Content to load your game content here
         }
 

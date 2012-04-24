@@ -1,4 +1,5 @@
 using HorrorMill.Engines.Rpg;
+using HorrorMill.Engines.Rpg.Entities;
 using HorrorMill.Engines.TileEngine;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Entities;
@@ -62,7 +63,8 @@ namespace HorrorMill.Worbs.Scenes
 
         private void AddProjectile(Vector2 position)
         {
-            Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, 20, 5f);
+            var projectileSpeed = player.Direction*5;
+            Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, 20, projectileSpeed, camera);
             p.Initialize();
             this.SceneComponents.Add(p);
         }
