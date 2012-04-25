@@ -7,7 +7,16 @@ namespace HorrorMill.Engines.Rpg
 {
     public class MapGenerator
     {
-        public static TileMap Generate(MapInformation mapInformation, Camera camera)
+        private Game gameRef;
+        private List<Enemy> enemies;
+
+        public MapGenerator(Game game)
+        {
+            gameRef = game;
+            enemies = new List<Enemy>();
+        }
+
+        public TileMap Generate(MapInformation mapInformation, Camera camera)
         {
             Random random = new Random();
 
@@ -56,10 +65,14 @@ namespace HorrorMill.Engines.Rpg
             camera.Position = new Vector2((float)50, (float)50);
             //camera.Position = new Vector2((float)playerX, (float)playerY);
 
-            //Add bosses
-            
+            //Create bosses
+            Enemy enemy = new Enemy(gameRef, camera);
+            enemy.Create(100, 10, new Vector2(20, 20));
+            enemies.Add(enemy);
 
             return new TileMap(camera.Game, mapInformation.TileSets, mapLayers, camera);
         }
+
+        public List<Enemy> Enemies { get { return enemies; } }
     }
 }

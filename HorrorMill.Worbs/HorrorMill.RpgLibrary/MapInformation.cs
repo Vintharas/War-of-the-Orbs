@@ -8,7 +8,7 @@ namespace HorrorMill.Engines.Rpg
     public class MapInformation
     {
         public List<TileSet> TileSets;
-        public List<Enemy> Enemies;
+        //public List<EnemyInfo> Enemies;
         public int NumberOfDecorativeObjects;
         public int TileWidth;
         public int TileHeight;
@@ -20,7 +20,7 @@ namespace HorrorMill.Engines.Rpg
             baseGame = game; 
 
             TileSets = new List<TileSet>();
-            Enemies = new List<Enemy>();
+            //Enemies = new List<Enemy>();
 
             NumberOfDecorativeObjects = 80;
             TileWidth = 40;
@@ -31,7 +31,12 @@ namespace HorrorMill.Engines.Rpg
         {
             this.TileSets.Add(new TileSet(baseGame, @"TileSheets\tileset1", 8, 8, 32, 32));
             this.TileSets.Add(new TileSet(baseGame, @"TileSheets\tileset2", 8, 8, 32, 32));
-            this.Enemies.Add(new Enemy("Big Boss", 100, 25));
+
+            //AddEnemies(30, hp, dmg, sprite)
+            //AddEnemies(1, hp, dmg, sprite)
+
+            //Add bosses here
+            //Add number of enemies here
         }
     }
 }

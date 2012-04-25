@@ -76,7 +76,10 @@ namespace HorrorMill.Worbs
         {
             // Allows the game to exit
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
+                if (((WorbsSceneManager)Components[1]).ActiveScene.Type == SceneType.Menu) //Dont use Components[index]
+                    this.Exit();
+                else
+                    ((WorbsSceneManager)Components[1]).ActiveScene.RaiseSwitchScene(SceneType.Menu);
 
             // TODO: Add your update logic here
 

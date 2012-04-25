@@ -8,6 +8,7 @@ using HorrorMill.Worbs.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Input;
 
 namespace HorrorMill.Worbs.Scenes
 {
@@ -31,7 +32,8 @@ namespace HorrorMill.Worbs.Scenes
 
             MapInformation mapInformation = new MapInformation(Game);
             mapInformation.LoadMapFromXML("test map");
-            map = MapGenerator.Generate(mapInformation, camera);
+            MapGenerator mapGen = new MapGenerator(game);
+            map = mapGen.Generate(mapInformation, camera);
             SceneComponents.Add(map);
 
             //Font gameTitle = new Font(game, "Generated map", new Vector2(0, 0), Color.Black);
@@ -40,6 +42,10 @@ namespace HorrorMill.Worbs.Scenes
             // Player
             player = new Player(game, camera);
             SceneComponents.Add(player);
+
+            //Enemies
+            foreach (Enemy e in mapGen.Enemies)
+                SceneComponents.Add(e);
 
             //Move Control
             crossControl = new CrossControl(game);
@@ -52,6 +58,9 @@ namespace HorrorMill.Worbs.Scenes
 
         public override void Update(GameTime gameTime)
         {
+            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
+                RaiseSwitchScene(SceneType.Menu);
+
             player.Move(crossControl.Motion);
             camera.LockToSpriteRectangle(player.Rectangle);
             base.Update(gameTime);

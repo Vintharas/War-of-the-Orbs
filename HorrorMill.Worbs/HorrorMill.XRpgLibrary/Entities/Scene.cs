@@ -50,7 +50,7 @@ namespace HorrorMill.Helpers.Xna.Entities
             base.Draw(gameTime);
         }
 
-        protected void RaiseSwitchScene(SceneType scene)
+        public void RaiseSwitchScene(SceneType scene)
         {
             if (SwitchScene != null)
                 SwitchScene(scene);
