@@ -1,3 +1,4 @@
+using System;
 using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -11,14 +12,21 @@ namespace HorrorMill.Helpers.Xna.UI
         private Texture2D controlTexture;
         private SpriteBatch spriteBatch;
         private Rectangle BasicAttackControlRectangle = new Rectangle(730, 350, 60, 60);
+        private int millisecondsBetweenAttacks;
+        private int millisecondsSinceLastAttack;
 
-        public bool Attacking = false; //TODO make property
+        public bool Attacking { get; set; }
+
+        public bool buttonIsPressed;
+        public bool buttonWasPressed;
 
         public AttackControl(Game game)
             : base(game)
         {
             gameInput = new GameInput();
             AddInputControls();
+            millisecondsBetweenAttacks = 500;
+            millisecondsSinceLastAttack = 500;
         }
 
         private void AddInputControls()
@@ -36,12 +44,32 @@ namespace HorrorMill.Helpers.Xna.UI
 
         public override void Update(GameTime gameTime)
         {
+            Attacking = false;
             gameInput.BeginUpdate();
             // Since they are touch taps, they will be in a given specific position,
             // so they will only affect one rectangle! (Refactor)
-            Attacking = gameInput.IsPressed("BasicAttack");
-            
+            buttonWasPressed = buttonIsPressed;
+            buttonIsPressed = gameInput.IsPressed("BasicAttack");
             gameInput.EndUpdate();
+
+            if (buttonWasPressed && !buttonIsPressed)
+            {
+                Attacking = true; // this is a single tap (like a single click)
+                millisecondsSinceLastAttack = millisecondsBetweenAttacks;
+            }
+            else if (buttonWasPressed && buttonIsPressed)
+            {
+                // user is holding the finger on the control
+                millisecondsSinceLastAttack += gameTime.ElapsedGameTime.Milliseconds;
+                if (millisecondsSinceLastAttack >= millisecondsBetweenAttacks)
+                {
+                    Attacking = true;
+                    millisecondsSinceLastAttack = 0;
+                }
+            }
+            else
+                millisecondsSinceLastAttack = millisecondsBetweenAttacks;
+
             base.Update(gameTime);
         }
 

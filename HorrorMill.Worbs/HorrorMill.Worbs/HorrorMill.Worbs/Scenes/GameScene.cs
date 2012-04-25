@@ -63,11 +63,12 @@ namespace HorrorMill.Worbs.Scenes
 
             player.Move(crossControl.Motion);
             camera.LockToSpriteRectangle(player.Rectangle);
-            base.Update(gameTime);
-
+            
             if (attackControl.Attacking)
                 AddProjectile(player.PositionMiddleCenter);
             CleanProjectilesOutOfView();
+
+            base.Update(gameTime);
         }
 
         private void AddProjectile(Vector2 position)
