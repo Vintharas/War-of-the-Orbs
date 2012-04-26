@@ -62,7 +62,7 @@ namespace HorrorMill.Engines.Rpg
             //TODO make sure it is created along water at the sides
             int playerX = random.Next(1, (mapInformation.TileWidth * 32)-32); //TODO have better calc
             int playerY = random.Next(1, (mapInformation.TileHeight * 32)-32); //TODO have better calc
-            camera.Position = new Vector2((float)50, (float)50);
+            camera.Position = new Vector2((float)150, (float)150);
             //camera.Position = new Vector2((float)playerX, (float)playerY);
 
             //Create bosses

@@ -67,5 +67,6 @@ namespace HorrorMill.Engines.Rpg.Entities
             base.Draw(gameTime);
         }
 
+        public Rectangle CollisionRectangle { get { return new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height); } }
     }
 }

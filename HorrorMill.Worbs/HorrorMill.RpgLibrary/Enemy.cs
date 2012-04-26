@@ -74,5 +74,6 @@ namespace HorrorMill.Engines.Rpg
             base.Draw(gameTime);
         }
 
+        public Rectangle CollisionRectangle { get { return enemySprite.CollisionRect; } }
     }
 }

@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework.Input;
+using System.Linq;
 
 namespace HorrorMill.Worbs.Scenes
 {
@@ -58,15 +59,33 @@ namespace HorrorMill.Worbs.Scenes
 
         public override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                RaiseSwitchScene(SceneType.Menu);
-
             player.Move(crossControl.Motion);
             camera.LockToSpriteRectangle(player.Rectangle);
             
             if (attackControl.Attacking)
                 AddProjectile(player.PositionMiddleCenter);
             CleanProjectilesOutOfView();
+
+            //Check collision for Projectile on Enemies
+            foreach (Projectile p in SceneComponents.OfType<Projectile>().ToList())
+            {
+                foreach (Enemy e in SceneComponents.OfType<Enemy>().ToList())
+                {
+                    if (e.CollisionRectangle.Intersects(p.CollisionRectangle))
+                    {
+                        e.Visible = false;
+                    }
+                }
+            }
+
+            //Check collision for Enemy
+            foreach (Enemy e in SceneComponents.OfType<Enemy>().ToList())
+            {
+                if (player.Rectangle.Intersects(e.CollisionRectangle))
+                {
+                    e.Visible = false;
+                }
+            }
 
             base.Update(gameTime);
         }
