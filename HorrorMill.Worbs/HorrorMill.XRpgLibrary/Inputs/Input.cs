@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework;
@@ -266,13 +267,13 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
             foreach (Buttons aButton in gamepadInputs.Keys)
             {
                 if (gamepadInputs[aButton]
-                && CurrentGamePadState[thePlayerIndex].IsButtonDown(aButton)
-                && !PreviousGamePadState[thePlayerIndex].IsButtonDown(aButton))
+                    && CurrentGamePadState[thePlayerIndex].IsButtonDown(aButton)
+                    && !PreviousGamePadState[thePlayerIndex].IsButtonDown(aButton))
                 {
                     return true;
                 }
                 else if (!gamepadInputs[aButton]
-                && CurrentGamePadState[thePlayerIndex].IsButtonDown(aButton))
+                        && CurrentGamePadState[thePlayerIndex].IsButtonDown(aButton))
                 {
                     return true;
                 }
@@ -283,18 +284,23 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 
         private bool IsTouchTapInputPressed()
         {
+            // TODO: Refactor this, before it didn't support multitouch, refactor whole class
+            // cause if this was not supported, I wonder what more crap there is XD
             foreach (Rectangle touchArea in touchTapInputs.Keys)
             {
-                if (touchTapInputs[touchArea]
-                && touchArea.Intersects(CurrentTouchRectangle)
-                && PreviousTouchPosition() == null)
+                foreach (Rectangle currentlyTouchedRectangle in CurrentlyTouchedRectangles)
                 {
-                    return true;
-                }
-                else if (!touchTapInputs[touchArea]
-                && touchArea.Intersects(CurrentTouchRectangle))
-                {
-                    return true;
+                    if (touchTapInputs[touchArea]
+                        && touchArea.Intersects(currentlyTouchedRectangle)
+                        && PreviousTouchPosition() == null)
+                    {
+                        return true;
+                    }
+                    else if (!touchTapInputs[touchArea]
+                            && touchArea.Intersects(currentlyTouchedRectangle))
+                    {
+                        return true;
+                    }
                 }
             }
 
@@ -494,6 +500,7 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
 
         public Vector2? CurrentTouchPosition()
         {
+            // This only handles one location! if there are several being touched!!
             foreach (TouchLocation location in CurrentTouchLocationState)
             {
                 switch (location.State)
@@ -539,6 +546,26 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
                                      (int)touchPosition.Value.Y - 5,
                                      10,
                                      10);
+            }
+        }
+
+        private List<Rectangle> CurrentlyTouchedRectangles
+        {
+            get
+            {
+                // This only handles one location! if there are several being touched!!
+                List<Vector2> touchPositions = new List<Vector2>();
+                foreach (TouchLocation location in CurrentTouchLocationState)
+                {
+                    switch (location.State)
+                    {
+                        case TouchLocationState.Pressed:
+                        case TouchLocationState.Moved:
+                            touchPositions.Add(location.Position);
+                            break;
+                    }
+                }
+                return touchPositions.Select(p => new Rectangle((int) p.X, (int) p.Y, 10, 10)).ToList();
             }
         }
 

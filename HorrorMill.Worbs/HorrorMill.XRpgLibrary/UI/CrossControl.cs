@@ -24,9 +24,9 @@ namespace HorrorMill.Helpers.Xna.UI
         private Vector2 motion;
         public Vector2 Motion { get { return motion; } set { motion = value; } }
 
-        public CrossControl(Game game) : base(game)
+        public CrossControl(Game game, GameInput gameInput) : base(game)
         {
-            gameInput = new GameInput();
+            this.gameInput = gameInput;
             AddInputControls();
         }
 
@@ -56,7 +56,7 @@ namespace HorrorMill.Helpers.Xna.UI
         {
             motion = Vector2.Zero;
 
-            gameInput.BeginUpdate();
+            //gameInput.BeginUpdate();
 
             
             if (gameInput.IsPressed("MoveLeft"))
@@ -88,7 +88,7 @@ namespace HorrorMill.Helpers.Xna.UI
                 motion.X--;
             }
             
-            gameInput.EndUpdate();
+            //gameInput.EndUpdate();
             base.Update(gameTime);
         }
 

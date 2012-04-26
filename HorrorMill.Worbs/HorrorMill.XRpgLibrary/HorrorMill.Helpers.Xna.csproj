@@ -78,6 +78,7 @@
     <Compile Include="Sprites\SpriteSheet.cs" />
     <Compile Include="UI\AttackControl.cs" />
     <Compile Include="UI\Control.cs" />
+    <Compile Include="UI\GameControls.cs" />
     <Compile Include="UI\CrossControl.cs" />
     <Compile Include="UI\MenuItem.cs" />
   </ItemGroup>

@@ -20,10 +20,9 @@ namespace HorrorMill.Helpers.Xna.UI
         public bool buttonIsPressed;
         public bool buttonWasPressed;
 
-        public AttackControl(Game game)
-            : base(game)
+        public AttackControl(Game game, GameInput gameInput) : base(game)
         {
-            gameInput = new GameInput();
+            this.gameInput = gameInput;
             AddInputControls();
             millisecondsBetweenAttacks = 500;
             millisecondsSinceLastAttack = 500;
@@ -45,13 +44,28 @@ namespace HorrorMill.Helpers.Xna.UI
         public override void Update(GameTime gameTime)
         {
             Attacking = false;
-            gameInput.BeginUpdate();
             // Since they are touch taps, they will be in a given specific position,
             // so they will only affect one rectangle! (Refactor)
             buttonWasPressed = buttonIsPressed;
             buttonIsPressed = gameInput.IsPressed("BasicAttack");
-            gameInput.EndUpdate();
+            PerformPeriodicAttack(gameTime);
 
+            base.Update(gameTime);
+        }
+
+        private void PerformPeriodicAttack(GameTime gameTime)
+        {
+            millisecondsSinceLastAttack += gameTime.ElapsedGameTime.Milliseconds;
+            if (millisecondsSinceLastAttack >= millisecondsBetweenAttacks)
+                if (buttonIsPressed)
+                {
+                    millisecondsSinceLastAttack = 0;
+                    Attacking = true;
+                }
+        }
+
+        private void PerformInmediateAttackWhenClickAndPeriodicAttackWhenHold(GameTime gameTime)
+        {
             if (buttonWasPressed && !buttonIsPressed)
             {
                 Attacking = true; // this is a single tap (like a single click)
@@ -69,8 +83,6 @@ namespace HorrorMill.Helpers.Xna.UI
             }
             else
                 millisecondsSinceLastAttack = millisecondsBetweenAttacks;
-
-            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

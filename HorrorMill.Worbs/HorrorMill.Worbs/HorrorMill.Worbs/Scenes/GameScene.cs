@@ -20,8 +20,10 @@ namespace HorrorMill.Worbs.Scenes
         private TileMap map;
         private Player player;
         private Camera camera;
-        private CrossControl crossControl;
-        private AttackControl attackControl;
+
+        private GameControls controls;
+        private CrossControl CrossControl { get { return controls.CrossControl; } }
+        private AttackControl AttackControl { get { return controls.AttackControl; } }
 
         public GameScene(Game game): base(game)
         {
@@ -49,20 +51,16 @@ namespace HorrorMill.Worbs.Scenes
                 SceneComponents.Add(e);
 
             //Move Control
-            crossControl = new CrossControl(game);
-            SceneComponents.Add(crossControl);
-
-            //Attack Control
-            attackControl = new AttackControl(game);
-            SceneComponents.Add(attackControl);
+            controls = new GameControls(game);
+            SceneComponents.Add(controls);
         }
 
         public override void Update(GameTime gameTime)
         {
-            player.Move(crossControl.Motion);
+            player.Move(CrossControl.Motion);
             camera.LockToSpriteRectangle(player.Rectangle);
             
-            if (attackControl.Attacking)
+            if (AttackControl.Attacking)
                 AddProjectile(player.PositionMiddleCenter);
             CleanProjectilesOutOfView();
 
@@ -92,7 +90,7 @@ namespace HorrorMill.Worbs.Scenes
 
         private void AddProjectile(Vector2 position)
         {
-            var projectileSpeed = player.Direction*5;
+            var projectileSpeed = player.Direction*10;
             Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, 20, projectileSpeed, camera);
             p.Initialize();
             this.SceneComponents.Add(p);

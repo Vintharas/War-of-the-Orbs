@@ -114,38 +114,32 @@ namespace HorrorMill.HorrorMill.Helpers.Xna.Inputs
             return IsPressed(theAction, (PlayerIndex)thePlayer);
         }
 
-        public void AddGamePadInput(string theAction, Buttons theButton,
-                            bool isReleasedPreviously)
+        public void AddGamePadInput(string theAction, Buttons theButton, bool isReleasedPreviously)
         {
             GetInput(theAction).AddGamepadInput(theButton, isReleasedPreviously);
         }
 
-        public void AddTouchTapInput(string theAction, Rectangle theTouchArea,
-                                     bool isReleasedPreviously)
+        public void AddTouchTapInput(string theAction, Rectangle theTouchArea, bool isReleasedPreviously)
         {
             GetInput(theAction).AddTouchTapInput(theTouchArea, isReleasedPreviously);
         }
 
-        public void AddTouchSlideInput(string theAction, Input.Direction theDirection,
-                                       float slideDistance)
+        public void AddTouchSlideInput(string theAction, Input.Direction theDirection, float slideDistance)
         {
             GetInput(theAction).AddTouchSlideInput(theDirection, slideDistance);
         }
 
-        public void AddKeyboardInput(string theAction, Keys theKey,
-                                     bool isReleasedPreviously)
+        public void AddKeyboardInput(string theAction, Keys theKey, bool isReleasedPreviously)
         {
             GetInput(theAction).AddKeyboardInput(theKey, isReleasedPreviously);
         }
 
-        public void AddTouchGestureInput(string theAction, GestureType theGesture,
-                                         Rectangle theRectangle)
+        public void AddTouchGestureInput(string theAction, GestureType theGesture, Rectangle theRectangle)
         {
             GetInput(theAction).AddTouchGesture(theGesture, theRectangle);
         }
 
-        public void AddAccelerometerInput(string theAction, Input.Direction theDirection,
-                                          float tiltThreshold)
+        public void AddAccelerometerInput(string theAction, Input.Direction theDirection, float tiltThreshold)
         {
             GetInput(theAction).AddAccelerometerInput(theDirection, tiltThreshold);
         }
