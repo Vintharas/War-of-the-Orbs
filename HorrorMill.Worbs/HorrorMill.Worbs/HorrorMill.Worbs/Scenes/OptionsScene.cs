@@ -8,6 +8,8 @@ namespace HorrorMill.Worbs.Scenes
 
         public OptionsScene(Game game): base(game)
         {
+            Type = SceneType.Options;
+
             Font optionsText = new Font(game, "This is the Options!", new Vector2(0, 0), Color.Red);
             // Player
             SceneComponents.Add(optionsText);

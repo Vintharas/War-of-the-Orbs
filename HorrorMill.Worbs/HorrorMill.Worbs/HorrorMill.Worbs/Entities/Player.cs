@@ -32,6 +32,9 @@ namespace HorrorMill.Worbs.Entities
         public Vector2 PositionMiddleCenter { get { return new Vector2(Position.X + Rectangle.Width/2, Position.Y + Rectangle.Height/2); }}
         public Vector2 Direction { get; set; }
 
+        public int Damage { get { return 30; } }
+        public int HitPoints { get; set; }   // Total hit points
+        public int Health { get; set; }      // Current Health
 
         public Player(Game game) : this(game, new Camera(game, game.GraphicsDevice.Viewport.Bounds)){}
 
@@ -49,6 +52,10 @@ namespace HorrorMill.Worbs.Entities
             multiSprite.States.Add(State.WalkDown.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/WalkDown", new Point(0, 0), new Point(50, 50), new Point(2, 1), SpriteDirection.Right));
             //multiSprite.States.Add(State.Attack.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/Attack", new Point(0, 0), new Point(140, 160), new Point(2, 1), SpriteDirection.Right));
             multiSprite.CurrentState = State.IdleDown.ToString();
+
+            // Load player characteristics
+            HitPoints = 100;
+            Health = HitPoints;
         }
 
         protected override void LoadContent()

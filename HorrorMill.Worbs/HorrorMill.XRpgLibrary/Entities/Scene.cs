@@ -9,7 +9,7 @@ namespace HorrorMill.Helpers.Xna.Entities
         public List<GameComponent> SceneComponents { get; set; }
         // Each scene defines it's own transitions via this event
         public event Action<SceneType> SwitchScene;
-        public SceneType Type; //TODO Make public property
+        public SceneType Type { get; set; }
 
         public Scene(Game game) : base(game)
         {

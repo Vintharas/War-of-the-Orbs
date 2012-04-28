@@ -9,3 +9,7 @@ Content\SpriteSheets\Player\Wizard\IdleUp.xnb
 Content\SpriteSheets\Player\Wizard\WalkDown.xnb
 Content\SpriteSheets\Player\Wizard\WalkUp.xnb
 Content\SpriteSheets\Projectiles\fire.xnb
+Content\Sprites\player-health-bar.xnb
+Content\Sprites\menu-button.xnb
+Content\Sprites\menu-button-30.xnb
+Content\Sprites\blood-stream.xnb

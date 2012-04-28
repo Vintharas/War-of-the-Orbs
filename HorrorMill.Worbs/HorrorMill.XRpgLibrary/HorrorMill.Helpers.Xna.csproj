@@ -80,6 +80,8 @@
     <Compile Include="UI\Control.cs" />
     <Compile Include="UI\GameControls.cs" />
     <Compile Include="UI\CrossControl.cs" />
+    <Compile Include="UI\GraphicButton.cs" />
+    <Compile Include="UI\HealthBar.cs" />
     <Compile Include="UI\MenuItem.cs" />
   </ItemGroup>
   <ItemGroup />

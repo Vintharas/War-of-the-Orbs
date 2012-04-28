@@ -1,4 +1,5 @@
 ﻿using System;
+using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
 using Microsoft.Xna.Framework;
 
 namespace HorrorMill.Helpers.Xna.UI
@@ -8,17 +9,16 @@ namespace HorrorMill.Helpers.Xna.UI
         protected abstract Rectangle ClickableArea { get; }
         public event Action Clicked;
 
+        public virtual GameInput GameInput { get; set; }
+
+
         protected Control(Game game) : base(game)
         {
         }
 
-        public virtual void CheckClick(Vector2 click)
+        protected void RaiseClicked()
         {
-            Rectangle rectangleClick = new Rectangle((int)click.X, (int)click.Y, 1, 1);
-            if (ClickableArea.Intersects(rectangleClick) && this.Clicked != null)
-            {
-                this.Clicked();
-            }
+            if (Clicked != null) Clicked();
         }
     }
 }

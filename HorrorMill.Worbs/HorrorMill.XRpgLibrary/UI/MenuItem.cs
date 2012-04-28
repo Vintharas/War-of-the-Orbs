@@ -1,22 +1,36 @@
 using System;
 using HorrorMill.Helpers.Xna.Entities;
+using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
 using Microsoft.Xna.Framework;
 
 namespace HorrorMill.Helpers.Xna.UI
 {
     public class MenuItem : Control
     {
+        private string text;
         private Font font;       
+
         private Rectangle clickableArea;
-        protected override Rectangle ClickableArea
+        protected override Rectangle ClickableArea { get { return clickableArea; }}
+
+
+        private string ActionName { get { return "Action" + text; } }
+        public override GameInput GameInput
         {
-            get { return clickableArea; }
+            get
+            {
+                return base.GameInput;
+            }
+            set
+            {
+                base.GameInput = value;
+                GameInput.AddTouchTapInput(ActionName, ClickableArea, false);
+            }
         }
-
-        public event Action Clicked;
-
+        
         public MenuItem(Game game, String text, Vector2 position, Color color) : base(game)
         {
+            this.text = text;
             font = new Font(game, text, position, color);
         }
 
@@ -27,14 +41,11 @@ namespace HorrorMill.Helpers.Xna.UI
             base.Initialize();
         }
 
-        public void CheckClick(Vector2 click)
+        public override void Update(GameTime gameTime)
         {
-            Rectangle rectangleClick = new Rectangle((int)click.X, (int)click.Y, 1, 1);
-
-            if (clickableArea.Intersects(rectangleClick) && this.Clicked != null)
-            {
-                this.Clicked();
-            }
+            if (GameInput.IsPressed(ActionName))
+                RaiseClicked();
+            base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)

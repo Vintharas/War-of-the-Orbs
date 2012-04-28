@@ -43,7 +43,6 @@ namespace HorrorMill.Helpers.Xna.Entities
             foreach (var s in scenes.Values)
                 if(s.Type == sceneType)
                     s.Initialize();
-
             SetActiveScene(sceneType);
         }
 

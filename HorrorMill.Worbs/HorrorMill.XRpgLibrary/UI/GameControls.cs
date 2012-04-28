@@ -9,7 +9,7 @@ namespace HorrorMill.Helpers.Xna.UI
         private readonly GameInput gameInput;
         public CrossControl CrossControl { get; private set; }
         public AttackControl AttackControl { get; private set; }
-        public List<DrawableGameComponent> controls;
+        private List<DrawableGameComponent> controls;
 
         public GameControls(Game game) : base(game)
         {
@@ -17,6 +17,12 @@ namespace HorrorMill.Helpers.Xna.UI
             CrossControl = new CrossControl(game, gameInput);
             AttackControl = new AttackControl(game, gameInput);
             controls = new List<DrawableGameComponent> {CrossControl, AttackControl};
+        }
+
+        public void AddControl(Control control)
+        {
+            control.GameInput = gameInput;
+            controls.Add(control);
         }
 
         public override void Initialize()

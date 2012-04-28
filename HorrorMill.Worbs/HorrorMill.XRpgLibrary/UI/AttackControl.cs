@@ -37,7 +37,7 @@ namespace HorrorMill.Helpers.Xna.UI
         {
             spriteBatch = (SpriteBatch)Game.Services.GetService(typeof(SpriteBatch));
             controlTexture = new Texture2D(Game.GraphicsDevice, 1, 1);
-            controlTexture.SetData(new Color[] { new Color(1f, 1f, 1f, 0.5f) });
+            controlTexture.SetData(new Color[] { new Color(.5f, .5f, .5f, 0f) });
             base.LoadContent();
         }
 

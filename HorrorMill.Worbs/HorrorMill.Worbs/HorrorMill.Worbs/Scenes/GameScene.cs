@@ -24,10 +24,11 @@ namespace HorrorMill.Worbs.Scenes
         private GameControls controls;
         private CrossControl CrossControl { get { return controls.CrossControl; } }
         private AttackControl AttackControl { get { return controls.AttackControl; } }
+        private HealthBar playerHealthBar;
 
         public GameScene(Game game): base(game)
         {
-            base.Type = SceneType.Game;
+            Type = SceneType.Game;
             //base.Initialized = true;
             
             // Initialize map settings
@@ -50,9 +51,14 @@ namespace HorrorMill.Worbs.Scenes
             foreach (Enemy e in mapGen.Enemies)
                 SceneComponents.Add(e);
 
-            //Move Control
+            //User interface
             controls = new GameControls(game);
+            GraphicButton menuButton = new GraphicButton(game, "Sprites/menu-button-30", new Vector2(760, 10));
+            controls.AddControl(menuButton);
             SceneComponents.Add(controls);
+            playerHealthBar = new HealthBar(game, "Sprites/player-health-bar", "Sprites/blood-stream", new Vector2(10, 10), player.Health);
+            SceneComponents.Add(playerHealthBar);
+
         }
 
         public override void Update(GameTime gameTime)
@@ -62,30 +68,50 @@ namespace HorrorMill.Worbs.Scenes
             
             if (AttackControl.Attacking)
                 AddProjectile(player.PositionMiddleCenter);
-            CleanProjectilesOutOfView();
-
+            
             //Check collision for Projectile on Enemies
             foreach (Projectile p in SceneComponents.OfType<Projectile>().ToList())
             {
                 foreach (Enemy e in SceneComponents.OfType<Enemy>().ToList())
                 {
-                    if (e.CollisionRectangle.Intersects(p.CollisionRectangle))
+                    if (e.CollisionRectangle.Intersects(p.CollisionRectangle) && e.Visible)
                     {
-                        e.Visible = false;
+                        e.TakeDamage(player.Damage);
+                        p.Active = false;
                     }
                 }
             }
-
             //Check collision for Enemy
             foreach (Enemy e in SceneComponents.OfType<Enemy>().ToList())
             {
                 if (player.Rectangle.Intersects(e.CollisionRectangle))
                 {
-                    e.Visible = false;
+                    // both player and enemy take damage
+                    player.Health -= e.Damage;
+                    e.TakeDamage(player.Damage);
                 }
             }
 
+            // Update health bar
+            playerHealthBar.CurrentHealth = player.Health;
+
+            //Check Player for Map
+
+
+            //Do some cleaning
+            CleanDiedEnemies();
+            CleanProjectilesOutOfView();
+
             base.Update(gameTime);
+        }
+
+        private void CleanDiedEnemies()
+        {
+            foreach (Enemy e in SceneComponents.OfType<Enemy>().ToList())
+            {
+                if (e.Dead)
+                    SceneComponents.Remove(e);
+            }
         }
 
         private void AddProjectile(Vector2 position)
@@ -98,14 +124,20 @@ namespace HorrorMill.Worbs.Scenes
 
         private void CleanProjectilesOutOfView()
         {
-            for (int i = SceneComponents.Count - 1; i >= 0; i--)
+            foreach (Projectile p in SceneComponents.OfType<Projectile>().ToList())
             {
-                if (SceneComponents[i] is Projectile)
-                {
-                    Projectile p = SceneComponents[i] as Projectile;
-                    if (!p.Active) SceneComponents.RemoveAt(i);
-                }
+                if (!p.Active)
+                    SceneComponents.Remove(p);
             }
+
+            //for (int i = SceneComponents.Count - 1; i >= 0; i--)
+            //{
+            //    if (SceneComponents[i] is Projectile)
+            //    {
+            //        Projectile p = SceneComponents[i] as Projectile;
+            //        if (!p.Active) SceneComponents.RemoveAt(i);
+            //    }
+            //}
         }
     }
 }

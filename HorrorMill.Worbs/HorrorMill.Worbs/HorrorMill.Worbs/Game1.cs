@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using HorrorMill.Worbs.Entities;
+using Microsoft.Xna.Framework.Input.Touch;
 
 namespace HorrorMill.Worbs
 {
@@ -45,6 +46,9 @@ namespace HorrorMill.Worbs
             // Main game components
             Components.Add(new InputHandler(this));
             Components.Add(new WorbsSceneManager(this));
+
+            // Enabled gestures
+            TouchPanel.EnabledGestures = GestureType.Tap;
 
             base.Initialize();
         }

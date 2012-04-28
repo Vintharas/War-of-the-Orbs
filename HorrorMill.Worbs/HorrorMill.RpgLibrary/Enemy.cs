@@ -30,6 +30,8 @@ namespace HorrorMill.Engines.Rpg
         private MultiSprite enemySprite;
         private SpriteBatch spriteBatch;
         private Camera Camera;
+        private bool dead = false;
+        public bool Dead { get { return dead; } }
 
         public Enemy(Game game, Camera camera) : base(game)
         {
@@ -52,6 +54,15 @@ namespace HorrorMill.Engines.Rpg
             enemySprite.States.Add(State.WalkDown.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/WalkDown", new Point(0, 0), new Point(50, 50), new Point(2, 1), SpriteDirection.Right));
             //multiSprite.States.Add(State.Attack.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/Attack", new Point(0, 0), new Point(140, 160), new Point(2, 1), SpriteDirection.Right));
             enemySprite.CurrentState = State.IdleDown.ToString();
+        }
+
+        public void TakeDamage(int dmg)
+        {
+            enemyHealth -= dmg;
+            if (enemyHealth < 1)
+            {
+                dead = true;
+            }
         }
 
         protected override void LoadContent()
