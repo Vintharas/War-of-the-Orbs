@@ -38,21 +38,21 @@ namespace HorrorMill.Engines.Rpg
             Camera = camera;
         }
 
-        public void Create(int health, int damage, Vector2 position)
+        public void Create(EnemyInformation enemyInfo, Vector2 position)
         {
-            enemyHealth = health;
-            enemyDamage = damage;
+            enemyHealth = enemyInfo.Health;
+            enemyDamage = enemyInfo.Damage;
             enemyPosition = position;
 
             enemySprite = new MultiSprite(position, 70);
-            enemySprite.States.Add(State.IdleDown.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/IdleDown", new Point(0, 0), new Point(50, 50), new Point(1, 1), SpriteDirection.Right));
-            enemySprite.States.Add(State.IdleUp.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/IdleUp", new Point(0, 0), new Point(50, 50), new Point(1, 1), SpriteDirection.Right));
-            enemySprite.States.Add(State.IdleRight.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/IdleRight", new Point(0, 0), new Point(50, 50), new Point(1, 1), SpriteDirection.Right));
-            enemySprite.States.Add(State.IdleLeft.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/IdleLeft", new Point(0, 0), new Point(50, 50), new Point(1, 1), SpriteDirection.Right));
-            enemySprite.States.Add(State.Walk.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/Walk", new Point(0, 0), new Point(50, 50), new Point(2, 1), SpriteDirection.Right));
-            enemySprite.States.Add(State.WalkUp.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/WalkUp", new Point(0, 0), new Point(50, 50), new Point(2, 1), SpriteDirection.Right));
-            enemySprite.States.Add(State.WalkDown.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/WalkDown", new Point(0, 0), new Point(50, 50), new Point(2, 1), SpriteDirection.Right));
-            //multiSprite.States.Add(State.Attack.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/Attack", new Point(0, 0), new Point(140, 160), new Point(2, 1), SpriteDirection.Right));
+            enemySprite.States.Add(State.IdleDown.ToString(), enemyInfo.SpriteIdleDown);
+            enemySprite.States.Add(State.IdleUp.ToString(), enemyInfo.SpriteIdleUp);
+            enemySprite.States.Add(State.IdleRight.ToString(), enemyInfo.SpriteIdleRight);
+            enemySprite.States.Add(State.IdleLeft.ToString(), enemyInfo.SpriteIdleLeft);
+            enemySprite.States.Add(State.Walk.ToString(), enemyInfo.SpriteWalk);
+            enemySprite.States.Add(State.WalkUp.ToString(), enemyInfo.SpriteWalkUp);
+            enemySprite.States.Add(State.WalkDown.ToString(), enemyInfo.SpriteWalkDown);
+            //multiSprite.States.Add(State.Attack.ToString(), );
             enemySprite.CurrentState = State.IdleDown.ToString();
         }
 

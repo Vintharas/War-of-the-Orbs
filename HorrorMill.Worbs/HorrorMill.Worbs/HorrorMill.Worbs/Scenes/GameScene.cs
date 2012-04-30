@@ -34,14 +34,11 @@ namespace HorrorMill.Worbs.Scenes
             // Initialize map settings
             camera = new Camera(game, new Rectangle(0, 0, 800, 480)); // TODO: Fix this so it is not hardcoded -> GraphicsDevice is not initialized at this point, need to wrap it somehow (perhaps add it as a service) so the camera will access it later when it's initialized 
 
-            MapInformation mapInformation = new MapInformation(Game);
+            MapInformation mapInformation = new MapInformation(game);
             mapInformation.LoadMapFromXML("test map");
             MapGenerator mapGen = new MapGenerator(game);
             map = mapGen.Generate(mapInformation, camera);
             SceneComponents.Add(map);
-
-            //Font gameTitle = new Font(game, "Generated map", new Vector2(0, 0), Color.Black);
-            //SceneComponents.Add(gameTitle);
 
             // Player
             player = new Player(game, camera);

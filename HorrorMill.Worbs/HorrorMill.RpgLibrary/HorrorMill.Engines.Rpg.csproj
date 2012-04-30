@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enemy.cs" />
+    <Compile Include="EnemyInformation.cs" />
     <Compile Include="Entities\Projectile.cs" />
     <Compile Include="MapGenerator.cs" />
     <Compile Include="MapInformation.cs" />

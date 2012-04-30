@@ -13,3 +13,10 @@ Content\Sprites\player-health-bar.xnb
 Content\Sprites\menu-button.xnb
 Content\Sprites\menu-button-30.xnb
 Content\Sprites\blood-stream.xnb
+Content\SpriteSheets\Enemy\RedWizard\IdleDown.xnb
+Content\SpriteSheets\Enemy\RedWizard\IdleLeft.xnb
+Content\SpriteSheets\Enemy\RedWizard\IdleRight.xnb
+Content\SpriteSheets\Enemy\RedWizard\IdleUp.xnb
+Content\SpriteSheets\Enemy\RedWizard\Walk.xnb
+Content\SpriteSheets\Enemy\RedWizard\WalkDown.xnb
+Content\SpriteSheets\Enemy\RedWizard\WalkUp.xnb
