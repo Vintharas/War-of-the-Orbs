@@ -17,17 +17,14 @@ namespace HorrorMill.Worbs.Scenes
         {
             Type = SceneType.Menu;
 
-            int y = 10;
-            int x = 10;
-            int itemNo = 1;
-
+            // We need at least 80 pixels between the menu item
+            // The current algorithm for touch detection (that is calculated from the font) requires it (otherwise the game may detect that both items were clicked)
             gameInput = new GameInput();
-            MenuItem menuItemStart = new MenuItem(game, "Start", new Vector2(x, y*itemNo++), Color.White);
+            MenuItem menuItemStart = new MenuItem(game, "Start", new Vector2(320, 300), Color.White);
             menuItemStart.Clicked += new Action(menuItemStart_Clicked);
-            MenuItem menuItemOptions = new MenuItem(game, "Options", new Vector2(x, 50), Color.White);
+            MenuItem menuItemOptions = new MenuItem(game, "Options", new Vector2(295, 380), Color.White);
             menuItemOptions.Clicked += new Action(menuItemOptions_Clicked);
  
-
             menuItems = new List<MenuItem>();
             menuItems.Add(menuItemStart);
             menuItems.Add(menuItemOptions);

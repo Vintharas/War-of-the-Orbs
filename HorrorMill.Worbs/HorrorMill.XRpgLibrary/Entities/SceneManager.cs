@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
 
 namespace HorrorMill.Helpers.Xna.Entities
 {
     public abstract class SceneManager : DrawableGameComponent
     {
-        private Dictionary<SceneType, Scene> scenes;
+        private Dictionary<SceneType, Scene> scenes;  // dictionary that holds a reference to all scenes so they only need to be instantiated once
+        private Stack<Scene> previousScenes;  // stack that stores previous scenes to enable the "Back button functionality"
         private Scene activeScene;
 
         public Scene ActiveScene
@@ -24,6 +26,7 @@ namespace HorrorMill.Helpers.Xna.Entities
         public SceneManager(Game game) : base(game)
         {
             scenes = new Dictionary<SceneType, Scene>();
+            previousScenes = new Stack<Scene>();
         }
 
         public void AddScene(SceneType sceneType, Scene scene)
@@ -35,6 +38,7 @@ namespace HorrorMill.Helpers.Xna.Entities
 
         public void SetActiveScene(SceneType sceneType)
         {
+            previousScenes.Push(ActiveScene);
             ActiveScene = scenes[sceneType];
         }
 
@@ -53,8 +57,27 @@ namespace HorrorMill.Helpers.Xna.Entities
 
         public override void Update(GameTime gameTime)
         {
+            // Back button functionality
+            if (PlayerPressedBackButton())
+            {
+                if (ThereArePreviousScenes())
+                    ActiveScene = previousScenes.Pop();
+                else
+                    Game.Exit();
+            }
+            // updates the activeScene only
             activeScene.Update(gameTime);
             base.Update(gameTime);
+        }
+
+        private static bool PlayerPressedBackButton()
+        {
+            return GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed;
+        }
+
+        private bool ThereArePreviousScenes()
+        {
+            return previousScenes.Count == 0;
         }
 
         public override void Draw(GameTime gameTime)

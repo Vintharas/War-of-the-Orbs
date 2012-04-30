@@ -19,19 +19,15 @@ namespace HorrorMill.Helpers.Xna.Entities
         public override void Initialize()
         {
             foreach (var c in SceneComponents)
-            {
                 c.Initialize();
-            }
             base.Initialize();
         }
 
         public override void Update(GameTime gameTime)
         {
             foreach (var c in SceneComponents)
-            {
                 if (c.Enabled)
                     c.Update(gameTime);
-            }
             base.Update(gameTime);
         }
 
