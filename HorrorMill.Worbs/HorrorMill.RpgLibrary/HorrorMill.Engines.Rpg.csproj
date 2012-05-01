@@ -63,6 +63,8 @@
     <Compile Include="EnemyInformation.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="Items\ArmorLocation.cs" />
+    <Compile Include="Items\Item.cs" />
     <Compile Include="MapGenerator.cs" />
     <Compile Include="MapInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
