@@ -103,7 +103,7 @@ namespace HorrorMill.Helpers.Xna.Sprites
         /// <param name="gameTime"></param>
         /// <param name="spriteBatch"></param>
         /// <param name="vector2"> </param>
-        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch, Vector2 cameraPosition)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             SpriteEffects spriteEffect = SpriteEffects.None;
             if ((CurrentSheet.SpriteDirection == SpriteDirection.Left && movementDirection == SpriteDirection.Right)
@@ -111,7 +111,7 @@ namespace HorrorMill.Helpers.Xna.Sprites
                 spriteEffect = SpriteEffects.FlipHorizontally;
      
             spriteBatch.Draw(TextureImage,
-                             position - cameraPosition,
+                             position,
                              new Rectangle(CurrentFrame.X*FrameSize.X,
                                            CurrentFrame.Y*FrameSize.Y,
                                            FrameSize.X, FrameSize.Y),

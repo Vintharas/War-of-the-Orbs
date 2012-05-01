@@ -24,6 +24,7 @@ namespace HorrorMill.Worbs
 
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
             graphics.IsFullScreen = true; // so the status bar is not shown
+            
             // Frame rate is 30 fps by default for Windows Phone.
             TargetElapsedTime = TimeSpan.FromTicks(333333);
 
@@ -88,14 +89,7 @@ namespace HorrorMill.Worbs
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.DimGray);
-
-            // TODO: Add your drawing code here
-
-            spriteBatch.Begin();
-
             base.Draw(gameTime);
-
-            spriteBatch.End();
         }
     }
 }

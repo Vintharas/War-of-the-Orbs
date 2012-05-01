@@ -9,6 +9,9 @@ namespace HorrorMill.Engines.TileEngine.Entities
 
     public class Camera : GameComponent
     {
+
+        private Rectangle viewPortRectangle;
+
         private Vector2 position;
         public Vector2 Position
         {
@@ -26,7 +29,9 @@ namespace HorrorMill.Engines.TileEngine.Entities
         public float Zoom { get; private set; }
         public CameraMode Mode { get; private set; }
 
-        private Rectangle viewPortRectangle;
+        // Transformation matrix that describes a translation (based on the position of the camera, since it's a 2D game the Z coordinate is 0f)
+        public Matrix Transformation { get { return Matrix.CreateTranslation(new Vector3(-Position, 0f)); } } 
+
 
 
         public Camera(Game game, Rectangle viewPortRectangle): this(game, viewPortRectangle, Vector2.Zero)

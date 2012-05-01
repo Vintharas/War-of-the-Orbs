@@ -52,9 +52,9 @@ namespace HorrorMill.Worbs.Scenes
             controls = new GameControls(game);
             GraphicButton menuButton = new GraphicButton(game, "Sprites/menu-button-30", new Vector2(760, 10));
             controls.AddControl(menuButton);
-            SceneComponents.Add(controls);
+            StaticSceneComponents.Add(controls);
             playerHealthBar = new HealthBar(game, "Sprites/player-health-bar", "Sprites/blood-stream", new Vector2(10, 10), player.Health);
-            SceneComponents.Add(playerHealthBar);
+            StaticSceneComponents.Add(playerHealthBar);
 
         }
 
@@ -100,6 +100,15 @@ namespace HorrorMill.Worbs.Scenes
             CleanProjectilesOutOfView();
 
             base.Update(gameTime);
+        }
+
+        public override void BeginDraw()
+        {
+            spriteBatch.Begin(SpriteSortMode.Deferred, 
+                              BlendState.AlphaBlend, 
+                              SamplerState.PointClamp, 
+                              null, null, null,
+                              player.Camera.Transformation);
         }
 
         private void CleanDiedEnemies()

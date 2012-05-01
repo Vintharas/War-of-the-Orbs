@@ -29,13 +29,12 @@ namespace HorrorMill.Engines.Rpg
         public Vector2 Position { get { return enemyPosition; } }
         private MultiSprite enemySprite;
         private SpriteBatch spriteBatch;
-        private Camera Camera;
+
         private bool dead = false;
         public bool Dead { get { return dead; } }
 
-        public Enemy(Game game, Camera camera) : base(game)
+        public Enemy(Game game) : base(game)
         {
-            Camera = camera;
         }
 
         public void Create(EnemyInformation enemyInfo, Vector2 position)
@@ -81,7 +80,7 @@ namespace HorrorMill.Engines.Rpg
 
         public override void Draw(GameTime gameTime)
         {
-            enemySprite.Draw(gameTime, spriteBatch, Camera.Position);
+            enemySprite.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
 

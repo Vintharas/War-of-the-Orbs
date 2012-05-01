@@ -1,10 +1,9 @@
-﻿using HorrorMill.Engines.TileEngine.Entities;
+using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Sprites;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-namespace HorrorMill.Worbs.Entities
+namespace HorrorMill.Engines.Rpg.Entities
 {
     public class Player : DrawableGameComponent
     {
@@ -74,7 +73,7 @@ namespace HorrorMill.Worbs.Entities
 
         public override void Draw(GameTime gameTime)
         {
-            multiSprite.Draw(gameTime, spriteBatch, Camera.Position);
+            multiSprite.Draw(gameTime, spriteBatch);
             base.Draw(gameTime);
         }
 

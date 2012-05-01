@@ -62,7 +62,7 @@ namespace HorrorMill.Engines.Rpg.Entities
         {
             if(Active) 
                 spriteBatch.Draw(this.texture, 
-                            this.position - camera.Position, // Position where to draw projectile
+                            this.position, // Position where to draw projectile
                             null, // null draws the full texture (we need to modify this if we want to have projectiles that animate)
                             Color.White, 0f, new Vector2(Width / 2, Height / 2), 1f, SpriteEffects.None, 0f);
 

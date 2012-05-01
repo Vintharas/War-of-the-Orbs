@@ -7,12 +7,12 @@ namespace HorrorMill.Engines.Rpg
 {
     public class MapGenerator
     {
-        private Game gameRef;
+        private Game game;
         private List<Enemy> enemies;
 
         public MapGenerator(Game game)
         {
-            gameRef = game;
+            this.game = game;
             enemies = new List<Enemy>();
         }
 
@@ -67,7 +67,7 @@ namespace HorrorMill.Engines.Rpg
             //Create enemies
             foreach (EnemyInformation ei in mapInformation.Enemies)
             {
-                Enemy enemy = new Enemy(gameRef, camera);                          //TODO dont add enemies to close to the player
+                Enemy enemy = new Enemy(game);                          //TODO dont add enemies to close to the player
                 int enemyX = random.Next(1, (mapInformation.TileWidth * 32) - 32); //TODO have better calc
                 int enemyY = random.Next(1, (mapInformation.TileWidth * 32) - 32); //TODO have better calc
                 enemy.Create(ei, new Vector2((float)enemyX, (float)enemyY));
@@ -75,7 +75,7 @@ namespace HorrorMill.Engines.Rpg
             }
 
 
-            return new TileMap(camera.Game, mapInformation.TileSets, mapLayers, camera);
+            return new TileMap(camera.Game, mapInformation.TileSets, mapLayers);
         }
 
         public List<Enemy> Enemies { get { return enemies; } }

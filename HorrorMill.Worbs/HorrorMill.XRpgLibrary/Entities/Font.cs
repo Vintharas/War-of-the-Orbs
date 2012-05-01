@@ -40,7 +40,6 @@ namespace HorrorMill.Helpers.Xna.Entities
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.DrawString(font, this.Text, this.Position, this.Color);
-
             base.Draw(gameTime);
         }
     }

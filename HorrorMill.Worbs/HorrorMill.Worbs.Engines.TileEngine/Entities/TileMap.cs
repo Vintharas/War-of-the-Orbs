@@ -15,22 +15,19 @@ namespace HorrorMill.Engines.TileEngine.Entities
         private List<TileSet> tileSets;
         private List<MapLayer> mapLayers;
         private SpriteBatch spriteBatch;
-        // the camera represents which part of the map to show
-        private Camera camera;
 
         private static int mapWidth;
         public static int WidthInPixels { get { return mapWidth*Engine.TileWidth; } }
         private static int mapHeight;
         public static int HeightInPixels { get { return mapHeight*Engine.TileHeight; } }
 
-        public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers, Camera camera)
+        public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers)
             : base(game)
         {
             this.tileSets = tileSets;
             this.mapLayers = mapLayers;
             SetMapSize();
             ValidateSizeOfAllLayers();
-            this.camera = camera;
         }
 
         private void SetMapSize()
@@ -50,8 +47,7 @@ namespace HorrorMill.Engines.TileEngine.Entities
             return layer.Width != mapWidth || layer.Height != mapHeight;
         }
 
-        public TileMap(Game game, TileSet tileSet, MapLayer mapLayer, Camera camera) : 
-            this(game, new List<TileSet>{tileSet}, new List<MapLayer>{mapLayer}, camera) {}
+        public TileMap(Game game, TileSet tileSet, MapLayer mapLayer) : this(game, new List<TileSet>{tileSet}, new List<MapLayer>{mapLayer}) {}
         
         public void AddLayer(MapLayer layer)
         {
@@ -84,11 +80,11 @@ namespace HorrorMill.Engines.TileEngine.Entities
             foreach (var layer in mapLayers)
                 for (int y = 0; y < layer.Height; y++)
                 {
-                    destination.Y = y * Engine.TileHeight - (int)camera.Position.Y;
+                    destination.Y = y * Engine.TileHeight;
                     for (int x = 0; x < layer.Width; x++)
                     {
                         tile = layer[x, y];
-                        destination.X = x * Engine.TileWidth - (int)camera.Position.X;
+                        destination.X = x * Engine.TileWidth;
                         spriteBatch.Draw(
                             tileSets[tile.TileSet].Texture,  // Tileset spritesheet
                             destination,                     // Position in the screen where to put the tile
