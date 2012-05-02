@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using HorrorMill.Engines.Rpg.Entities;
 using Microsoft.Xna.Framework;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Sprites;

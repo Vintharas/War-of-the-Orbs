@@ -9,5 +9,15 @@
 
         //public int WillPower { get; set; }      
         //public int Cunning { get; set; }        
+        public Attributes Clone()
+        {
+            return new Attributes
+                       {
+                           Strength = Strength,
+                           Dexterity = Dexterity,
+                           Constitution = Constitution,
+                           Intelligence = Intelligence
+                       };
+        }
     }
 }

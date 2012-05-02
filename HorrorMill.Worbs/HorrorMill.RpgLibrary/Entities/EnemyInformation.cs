@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using HorrorMill.Helpers.Xna.Sprites;
 
-namespace HorrorMill.Engines.Rpg
+namespace HorrorMill.Engines.Rpg.Entities
 {
     public class EnemyInformation
     {

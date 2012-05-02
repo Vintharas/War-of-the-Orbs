@@ -59,15 +59,22 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Enemy.cs" />
-    <Compile Include="EnemyInformation.cs" />
     <Compile Include="Entities\Attributes.cs" />
+    <Compile Include="Entities\Enemy.cs" />
+    <Compile Include="Entities\EnemyInformation.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\EntityClass.cs" />
+    <Compile Include="Entities\EntityRace.cs" />
+    <Compile Include="Entities\Gender.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="Entities\VariableAttribute.cs" />
     <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\ArmorLocation.cs" />
     <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\ItemHandler.cs" />
     <Compile Include="Items\Orb.cs" />
+    <Compile Include="Items\Shield.cs" />
     <Compile Include="Items\Weapon.cs" />
     <Compile Include="MapGenerator.cs" />
     <Compile Include="MapInformation.cs" />

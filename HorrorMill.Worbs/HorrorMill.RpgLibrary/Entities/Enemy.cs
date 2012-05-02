@@ -1,11 +1,8 @@
-using System;
-using System.Collections.Generic;
-using Microsoft.Xna.Framework;
 using HorrorMill.Helpers.Xna.Sprites;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using HorrorMill.Engines.TileEngine.Entities;
 
-namespace HorrorMill.Engines.Rpg
+namespace HorrorMill.Engines.Rpg.Entities
 {
     public class Enemy : DrawableGameComponent
     {
