@@ -61,10 +61,14 @@
   <ItemGroup>
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyInformation.cs" />
+    <Compile Include="Entities\Attributes.cs" />
     <Compile Include="Entities\Player.cs" />
     <Compile Include="Entities\Projectile.cs" />
+    <Compile Include="Items\Armor.cs" />
     <Compile Include="Items\ArmorLocation.cs" />
     <Compile Include="Items\Item.cs" />
+    <Compile Include="Items\Orb.cs" />
+    <Compile Include="Items\Weapon.cs" />
     <Compile Include="MapGenerator.cs" />
     <Compile Include="MapInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
