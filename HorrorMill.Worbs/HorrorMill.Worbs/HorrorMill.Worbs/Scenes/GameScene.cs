@@ -16,6 +16,7 @@ namespace HorrorMill.Worbs.Scenes
 {
     public class GameScene : Scene
     {
+        // Separate UI from actual game -> UI in GameScene, game within World/Level structure
         private World theWorldOfWorbs;
 
         // testing custom tile TheTileEngine
