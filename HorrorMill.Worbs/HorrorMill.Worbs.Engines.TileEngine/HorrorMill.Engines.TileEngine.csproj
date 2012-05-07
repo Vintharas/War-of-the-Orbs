@@ -59,7 +59,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engine.cs" />
+    <Compile Include="TheTileEngine.cs" />
     <Compile Include="Entities\Camera.cs" />
     <Compile Include="Entities\MapLayer.cs" />
     <Compile Include="Entities\Tile.cs" />

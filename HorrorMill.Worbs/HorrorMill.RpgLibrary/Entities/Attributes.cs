@@ -1,6 +1,9 @@
 ﻿namespace HorrorMill.Engines.Rpg.Entities
 {
-    public class Attributes
+    /// <summary>
+    /// Structure that represents the attributes of a given entity
+    /// </summary>
+    public struct Attributes
     {
         public int Strength { get; set; }       // damage
         public int Dexterity { get; set; }      // attack, defense

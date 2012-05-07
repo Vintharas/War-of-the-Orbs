@@ -1,5 +1,6 @@
 using HorrorMill.Engines.Rpg;
 using HorrorMill.Engines.Rpg.Entities;
+using HorrorMill.Engines.Rpg.Maps;
 using HorrorMill.Engines.TileEngine;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Entities;
@@ -15,8 +16,10 @@ namespace HorrorMill.Worbs.Scenes
 {
     public class GameScene : Scene
     {
-        // testing custom tile engine
-        private Engine engine = new Engine(32, 32);
+        private World theWorldOfWorbs;
+
+        // testing custom tile TheTileEngine
+        private TheTileEngine engine = new TheTileEngine(32, 32);
         private TileMap map;
         private Player player;
         private Camera camera;

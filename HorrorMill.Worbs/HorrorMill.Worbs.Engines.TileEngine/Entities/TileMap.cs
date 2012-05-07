@@ -17,9 +17,9 @@ namespace HorrorMill.Engines.TileEngine.Entities
         private SpriteBatch spriteBatch;
 
         private static int mapWidth;
-        public static int WidthInPixels { get { return mapWidth*Engine.TileWidth; } }
+        public static int WidthInPixels { get { return mapWidth*TheTileEngine.TileWidth; } }
         private static int mapHeight;
-        public static int HeightInPixels { get { return mapHeight*Engine.TileHeight; } }
+        public static int HeightInPixels { get { return mapHeight*TheTileEngine.TileHeight; } }
 
         public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers)
             : base(game)
@@ -74,17 +74,17 @@ namespace HorrorMill.Engines.TileEngine.Entities
         public override void  Draw(GameTime gameTime)
         {
             // these two objects are reused (more efficient)
-            Rectangle destination = new Rectangle(0, 0, Engine.TileWidth, Engine.TileHeight);
+            Rectangle destination = new Rectangle(0, 0, TheTileEngine.TileWidth, TheTileEngine.TileHeight);
             Tile tile;
 
             foreach (var layer in mapLayers)
                 for (int y = 0; y < layer.Height; y++)
                 {
-                    destination.Y = y * Engine.TileHeight;
+                    destination.Y = y * TheTileEngine.TileHeight;
                     for (int x = 0; x < layer.Width; x++)
                     {
                         tile = layer[x, y];
-                        destination.X = x * Engine.TileWidth;
+                        destination.X = x * TheTileEngine.TileWidth;
                         spriteBatch.Draw(
                             tileSets[tile.TileSet].Texture,  // Tileset spritesheet
                             destination,                     // Position in the screen where to put the tile

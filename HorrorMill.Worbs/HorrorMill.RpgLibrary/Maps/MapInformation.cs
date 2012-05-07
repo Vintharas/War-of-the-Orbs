@@ -1,11 +1,10 @@
-using System;
 using System.Collections.Generic;
 using HorrorMill.Engines.Rpg.Entities;
-using Microsoft.Xna.Framework;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Sprites;
+using Microsoft.Xna.Framework;
 
-namespace HorrorMill.Engines.Rpg
+namespace HorrorMill.Engines.Rpg.Maps
 {
     public class MapInformation
     {

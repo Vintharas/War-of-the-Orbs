@@ -2,12 +2,12 @@
 
 namespace HorrorMill.Engines.TileEngine
 {
-    public class Engine
+    public class TheTileEngine
     {
         public static int TileWidth { get; private set; }
         public static int TileHeight { get; private set; }
 
-        public Engine(int tileWidth, int tileHeight)
+        public TheTileEngine(int tileWidth, int tileHeight)
         {
             TileWidth = tileWidth;
             TileHeight = tileHeight;
