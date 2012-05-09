@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using HorrorMill.Engines.Rpg.Entities;
-using HorrorMill.Engines.TileEngine.Entities;
 using Microsoft.Xna.Framework;
+using HorrorMill.Engines.TileEngine.Entities;
 
-namespace HorrorMill.Engines.Rpg.Maps
+namespace HorrorMill.Engines.Rpg
 {
     public class MapGenerator
     {
@@ -76,7 +76,7 @@ namespace HorrorMill.Engines.Rpg.Maps
             }
 
 
-            return new TileMap(camera.Game, mapInformation.TileSets, mapLayers, camera);
+            return new TileMap(camera.Game, mapInformation.TileSets, mapLayers);
         }
 
         public List<Enemy> Enemies { get { return enemies; } }

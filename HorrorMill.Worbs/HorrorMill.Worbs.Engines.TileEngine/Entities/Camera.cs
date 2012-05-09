@@ -11,6 +11,7 @@ namespace HorrorMill.Engines.TileEngine.Entities
     {
 
         private Rectangle viewPortRectangle;
+        public Rectangle ViewPortRectangle { get { return viewPortRectangle; } }
 
         private Vector2 position;
         public Vector2 Position

@@ -1,7 +1,7 @@
 ﻿<Window x:Class="HorrorMill.Engines.Rpg.Editor.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="The HorrorMill Rpg Editorh" Height="350" Width="525">
+        Title="The HorrorMill Rpg Editor" Height="350" Width="525">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>

@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using HorrorMill.Engines.Rpg.Entities;
+using Microsoft.Xna.Framework;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Sprites;
-using Microsoft.Xna.Framework;
 
-namespace HorrorMill.Engines.Rpg.Maps
+namespace HorrorMill.Engines.Rpg
 {
     public class MapInformation
     {
@@ -14,7 +15,7 @@ namespace HorrorMill.Engines.Rpg.Maps
         public int TileWidth;
         public int TileHeight;
         private Game baseGame;
-        public enum MapLayerEnum { Ground, Decorations, Entities, Sky };
+        public enum MapLayerEnum { Ground, Decorations, Enemies, Sky };
 
         public MapInformation(Game game)
         {

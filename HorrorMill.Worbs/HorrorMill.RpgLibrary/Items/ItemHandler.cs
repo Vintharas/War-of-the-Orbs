@@ -23,6 +23,7 @@ namespace HorrorMill.Engines.Rpg.Items
         {
             armors = new Dictionary<string, Armor>();
             weapons = new Dictionary<string, Weapon>();
+            shields = new Dictionary<string, Shield>();
             orbs = new Dictionary<string, Orb>();
         }
 

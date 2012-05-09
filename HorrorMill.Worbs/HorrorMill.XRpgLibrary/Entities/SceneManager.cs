@@ -67,7 +67,7 @@ namespace HorrorMill.Helpers.Xna.Entities
                 if (ThereArePreviousScenes())
                     ActiveScene = previousScenes.Pop();
                 else
-                    Game.Exit();
+                    Game.Exit(); //TODO Clean up before exist else error in set
             }
             // updates the activeScene only
             activeScene.Update(gameTime);
@@ -81,7 +81,7 @@ namespace HorrorMill.Helpers.Xna.Entities
 
         private bool ThereArePreviousScenes()
         {
-            return previousScenes.Count == 0;
+            return previousScenes.Count != 0;
         }
 
         public override void Draw(GameTime gameTime)

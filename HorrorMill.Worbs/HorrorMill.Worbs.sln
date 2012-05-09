@@ -74,7 +74,6 @@ Global
 		{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}.Release|Windows Phone.Build.0 = Release|Windows Phone
 		{6D59C62A-2AE4-44D6-8BDF-17E41B1D7055}.Release|x86.ActiveCfg = Release|Windows Phone
 		{86ED91BC-1919-48A4-A741-FEC917E3E2CD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{86ED91BC-1919-48A4-A741-FEC917E3E2CD}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{86ED91BC-1919-48A4-A741-FEC917E3E2CD}.Debug|Windows Phone.ActiveCfg = Debug|x86
 		{86ED91BC-1919-48A4-A741-FEC917E3E2CD}.Debug|x86.ActiveCfg = Debug|x86
 		{86ED91BC-1919-48A4-A741-FEC917E3E2CD}.Debug|x86.Build.0 = Debug|x86

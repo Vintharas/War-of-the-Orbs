@@ -14,7 +14,7 @@
                 Name = Name,
                 Type = Type,
                 Weight = Weight,
-                AttributeModifiers = AttributeModifiers.Clone()
+                AttributeModifiers = AttributeModifiers
             };
         }
     }

@@ -81,6 +81,7 @@
     <Compile Include="Level.cs" />
     <Compile Include="Maps\MapGenerator.cs" />
     <Compile Include="Maps\MapInformation.cs" />
+    <Compile Include="Mechanics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RpgGame.cs" />
     <Compile Include="World.cs" />

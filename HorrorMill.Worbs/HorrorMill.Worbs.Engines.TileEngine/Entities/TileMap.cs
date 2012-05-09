@@ -15,20 +15,24 @@ namespace HorrorMill.Engines.TileEngine.Entities
         private List<TileSet> tileSets;
         private List<MapLayer> mapLayers;
         private SpriteBatch spriteBatch;
+        private Camera camera;
 
         private static int mapWidth;
         public static int WidthInPixels { get { return mapWidth*TheTileEngine.TileWidth; } }
         private static int mapHeight;
         public static int HeightInPixels { get { return mapHeight*TheTileEngine.TileHeight; } }
 
-        public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers)
+        public TileMap(Game game, List<TileSet> tileSets, List<MapLayer> mapLayers, Camera camera)
             : base(game)
         {
             this.tileSets = tileSets;
             this.mapLayers = mapLayers;
+            this.camera = camera;
             SetMapSize();
             ValidateSizeOfAllLayers();
         }
+
+        public TileMap(Game game, TileSet tileSet, MapLayer mapLayer, Camera camera) : this(game, new List<TileSet> { tileSet }, new List<MapLayer> { mapLayer }, camera) { }
 
         private void SetMapSize()
         {
@@ -47,8 +51,6 @@ namespace HorrorMill.Engines.TileEngine.Entities
             return layer.Width != mapWidth || layer.Height != mapHeight;
         }
 
-        public TileMap(Game game, TileSet tileSet, MapLayer mapLayer) : this(game, new List<TileSet>{tileSet}, new List<MapLayer>{mapLayer}) {}
-        
         public void AddLayer(MapLayer layer)
         {
             if (LayerHasInvalidSize(layer))
@@ -71,17 +73,26 @@ namespace HorrorMill.Engines.TileEngine.Entities
             base.LoadContent();
         }
 
-        public override void  Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
+            Point cameraPoint = TheTileEngine.VectorToCell(camera.Position);
+            Point viewPoint = TheTileEngine.VectorToCell(
+                new Vector2( 
+                    camera.Position.X + camera.ViewPortRectangle.Width, 
+                    camera.Position.Y + camera.ViewPortRectangle.Height));
+            
+            Point min = new Point(Math.Max(0, cameraPoint.X - 1), Math.Max(0, cameraPoint.Y - 1));   // The minimum to draw is either 0(the beginnig of the map) or the camera position
+            Point max = new Point(Math.Min(viewPoint.X + 1, mapWidth), Math.Min(viewPoint.Y + 1, mapHeight)); // the maximum to draw is either the end of the screen or the end of the map
+
             // these two objects are reused (more efficient)
             Rectangle destination = new Rectangle(0, 0, TheTileEngine.TileWidth, TheTileEngine.TileHeight);
             Tile tile;
 
             foreach (var layer in mapLayers)
-                for (int y = 0; y < layer.Height; y++)
+                for (int y = min.Y; y < max.Y; y++)
                 {
                     destination.Y = y * TheTileEngine.TileHeight;
-                    for (int x = 0; x < layer.Width; x++)
+                    for (int x = min.X; x < max.X; x++)
                     {
                         tile = layer[x, y];
                         destination.X = x * TheTileEngine.TileWidth;
