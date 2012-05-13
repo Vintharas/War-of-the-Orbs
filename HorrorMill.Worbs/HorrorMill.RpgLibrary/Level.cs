@@ -39,7 +39,11 @@ namespace HorrorMill.Engines.Rpg
         public override void Update(GameTime gameTime)
         {
             // Collision detection
-
+            bool mapCollision = map.CheckCollision(player.Rectangle);
+            if (mapCollision)
+            {
+                player.TakeDamage(10);
+            }
 
             //Check collision for Projectile on Enemies
             foreach (Projectile p in levelComponents.OfType<Projectile>().ToList())
@@ -59,7 +63,7 @@ namespace HorrorMill.Engines.Rpg
                 if (player.Rectangle.Intersects(e.CollisionRectangle))
                 {
                     // both player and enemy take damage
-                    player.Health -= e.Damage;
+                    player.TakeDamage(e.Damage);
                     e.TakeDamage(player.Damage);
                 }
             }

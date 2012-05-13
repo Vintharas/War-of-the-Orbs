@@ -34,7 +34,9 @@ namespace HorrorMill.Engines.Rpg.Maps
                 }
 
             //Decoration
+            bool collision = false;
             MapLayer decoration = new MapLayer(40, 40);
+            MapLayer decorationTop = new MapLayer(40, 40);
             for (int i = 0; i < mapInformation.NumberOfDecorativeObjects; i++)
             {
                 int x = random.Next(0, 40);
@@ -46,18 +48,23 @@ namespace HorrorMill.Engines.Rpg.Maps
                 {
                     Tile treeTile = new Tile(tileIndex, 0); // tileSet: 0
                     if (y > 0)
-                        decoration[x, y-1] = treeTile;
+                        decorationTop[x, y - 1] = treeTile;
                     tileIndex = 15; //to get the foot below
                 }
 
-                Tile tile = new Tile(tileIndex, 0); // tileSet: 0
+                if (tileIndex == 15)
+                    collision = true;
+                else
+                    collision = false;
+
+                Tile tile = new Tile(tileIndex, 0, collision); // tileSet: 0
                 decoration[x, y] = tile;
             }
 
             mapLayers.Insert(0, ground);
             mapLayers.Insert(1, decoration);
+            mapLayers.Insert(2, decorationTop);
 
-            
             //Add player position
             //TODO make sure it is created along water at the sides
             int playerX = random.Next(1, (mapInformation.TileWidth * 32)-32); //TODO have better calc

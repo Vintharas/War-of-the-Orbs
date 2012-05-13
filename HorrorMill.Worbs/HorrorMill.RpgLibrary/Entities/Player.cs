@@ -33,7 +33,7 @@ namespace HorrorMill.Engines.Rpg.Entities
 
         public int Damage { get { return 30; } }
         public int HitPoints { get; set; }   // Total hit points
-        public int Health { get; set; }      // Current Health
+        public int Health { get; private set; }      // Current Health
 
         public Player(Game game) : this(game, new Camera(game, game.GraphicsDevice.Viewport.Bounds)){}
 
@@ -115,6 +115,12 @@ namespace HorrorMill.Engines.Rpg.Entities
             newPosition.X = MathHelper.Clamp(newPosition.X, 0, TileMap.WidthInPixels - multiSprite.Rectangle.Width);
             newPosition.Y = MathHelper.Clamp(newPosition.Y, 0, TileMap.HeightInPixels - multiSprite.Rectangle.Height);
             return newPosition - previousPosition;
+        }
+
+        public void TakeDamage(int damage)
+        {
+            //TODO add armor stuff and so on?
+            Health -= damage;
         }
     }
 }

@@ -75,12 +75,29 @@ namespace HorrorMill.Engines.TileEngine.Entities
 
         public override void Draw(GameTime gameTime)
         {
+            DrawBeforePlayer(gameTime);
+            //DrawAfterPlayer(gameTime); TODO MapLayer always put tile everywhere so whe addind a new layer that should be on top it overwrites everything
+            base.Draw(gameTime);
+        }
+
+        public void DrawBeforePlayer(GameTime gameTime)
+        {
+            DrawLayer(gameTime, new List<int>() { 0, 1 });
+        }
+
+        public void DrawAfterPlayer(GameTime gameTime)
+        {
+            DrawLayer(gameTime, new List<int>() { 2 });
+        }
+
+        public void DrawLayer(GameTime gameTime, List<int> layersToDraw)
+        {
             Point cameraPoint = TheTileEngine.VectorToCell(camera.Position);
             Point viewPoint = TheTileEngine.VectorToCell(
-                new Vector2( 
-                    camera.Position.X + camera.ViewPortRectangle.Width, 
+                new Vector2(
+                    camera.Position.X + camera.ViewPortRectangle.Width,
                     camera.Position.Y + camera.ViewPortRectangle.Height));
-            
+
             Point min = new Point(Math.Max(0, cameraPoint.X - 1), Math.Max(0, cameraPoint.Y - 1));   // The minimum to draw is either 0(the beginnig of the map) or the camera position
             Point max = new Point(Math.Min(viewPoint.X + 1, mapWidth), Math.Min(viewPoint.Y + 1, mapHeight)); // the maximum to draw is either the end of the screen or the end of the map
 
@@ -88,7 +105,10 @@ namespace HorrorMill.Engines.TileEngine.Entities
             Rectangle destination = new Rectangle(0, 0, TheTileEngine.TileWidth, TheTileEngine.TileHeight);
             Tile tile;
 
-            foreach (var layer in mapLayers)
+            foreach (int layerIndex in layersToDraw)
+            {
+                MapLayer layer = mapLayers[layerIndex];
+                //foreach (var layer in mapLayers)
                 for (int y = min.Y; y < max.Y; y++)
                 {
                     destination.Y = y * TheTileEngine.TileHeight;
@@ -103,10 +123,27 @@ namespace HorrorMill.Engines.TileEngine.Entities
                             Color.White);
                     }
                 }
-            base.Draw(gameTime);
+            }
         }
-        
 
+        public bool CheckCollision(Rectangle rectangle)
+        {
+            MapLayer layer = mapLayers[1];
+            List<CollisionTile> tiles = layer.GetTilesWithCollision();
+            foreach (CollisionTile tile in tiles)
+            {
+                if(rectangle.Intersects(tile.CollisionRectangle)) 
+                {
+                    return true;
+                }
+            }
+
+            //foreach (var tile in layer.GetTilesWithCollision())
+            //{
+                
+            //}
+            return false;
+        }
 
     }
 }

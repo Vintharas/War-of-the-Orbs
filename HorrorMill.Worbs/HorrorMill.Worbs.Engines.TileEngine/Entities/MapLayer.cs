@@ -1,4 +1,8 @@
-﻿namespace HorrorMill.Engines.TileEngine.Entities
+﻿using System.Collections.Generic;
+using System.Linq;
+using Microsoft.Xna.Framework;
+
+namespace HorrorMill.Engines.TileEngine.Entities
 {
     public class MapLayer
     {
@@ -33,7 +37,36 @@
             get { return map[y, x]; }
             set { map[y, x] = value; }
         }
-        
+
+        List<CollisionTile> tilesWithCollision;
+        public List<CollisionTile> GetTilesWithCollision()
+        {
+            if (tilesWithCollision == null)
+            {
+                tilesWithCollision = new List<CollisionTile>();
+                for (int y = 0; y < Height; y++)
+                    for (int x = 0; x < Width; x++)
+                        if (map[y, x].Collision)
+                        {
+                            tilesWithCollision.Add(
+                                new CollisionTile
+                                {
+                                    Tile = map[y, x],
+                                    CollisionRectangle = new Rectangle(x*32, y*32, 32, 32) // need to put the right collision rectangle
+                                });
+                        }
+
+            }
+            return tilesWithCollision;
+        }
+    
+
+    }
+
+    public class CollisionTile
+    {
+        public Tile Tile { get; set; }
+        public Rectangle CollisionRectangle { get; set; }
 
     }
 }
