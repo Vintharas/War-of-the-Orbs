@@ -8,6 +8,7 @@ namespace HorrorMill.Engines.Rpg.Items
         public string Type { get; set; }
         public float Weight { get; set; } // this will affect how fast monsters are
         public Attributes AttributeModifiers { get; set; }
+        public bool Equipped { get; set; }
 
         public abstract Item Clone();
 

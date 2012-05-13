@@ -11,7 +11,7 @@ namespace HorrorMill.Engines.Rpg.Items
     ///     - Assign strings to regular items that are associated with Attribute modifiers or other kind of modifiers
     ///     - ...
     /// </summary>
-    public class ItemHandler
+    public class ItemManager
     {
         private Dictionary<string, Armor> armors;
         private Dictionary<string, Weapon> weapons;
@@ -19,7 +19,7 @@ namespace HorrorMill.Engines.Rpg.Items
         private Dictionary<string, Orb> orbs;
         // can add other items, potions, herbs, etc, etc
 
-        public ItemHandler()
+        public ItemManager()
         {
             armors = new Dictionary<string, Armor>();
             weapons = new Dictionary<string, Weapon>();
@@ -56,6 +56,13 @@ namespace HorrorMill.Engines.Rpg.Items
             weapons.Add("Apprentice's Wand", new Weapon {Name = "Apprentice Wand", Attack = 10, Damage = 10, Type = "Wand"});
             weapons.Add("Master's Wand", new Weapon {Name = "Master's Wand", Attack = 20, Damage = 20, Type = "Wand"});
             armors.Add("Apprentice's Robe", new Armor {Name = "Apprentice's Robe", Defense = 10, Location = ArmorLocation.Body, Type = "Robe"});
+        }
+
+        public static Dictionary<string, Item> GetItems()
+        {
+            var items = new Dictionary<string, Item>();
+            items.Add("Apprentice's Wand", new Weapon { Name = "Apprentice Wand", Attack = 10, Damage = 10, Type = "Wand", Equipped = true});
+            return items;
         }
 
     }

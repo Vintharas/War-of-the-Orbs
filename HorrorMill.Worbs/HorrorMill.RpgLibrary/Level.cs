@@ -102,7 +102,8 @@ namespace HorrorMill.Engines.Rpg
         public void AddProjectile(Vector2 position)
         {
             var projectileSpeed = player.Direction * 10;
-            Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, 20, projectileSpeed, player.Camera);
+            // TODO: need to tie the projectile speed to the player's weapon somehow
+            Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, player.Damage, projectileSpeed, player.Camera);
             p.Initialize();
             this.levelComponents.Add(p);
         }

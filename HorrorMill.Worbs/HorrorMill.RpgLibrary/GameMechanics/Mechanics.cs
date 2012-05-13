@@ -1,6 +1,6 @@
-﻿using System;
+using System;
 
-namespace HorrorMill.Engines.Rpg
+namespace HorrorMill.Engines.Rpg.GameMechanics
 {
     public enum DieType
     {

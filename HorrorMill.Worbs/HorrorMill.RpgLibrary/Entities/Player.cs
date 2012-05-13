@@ -1,3 +1,4 @@
+using HorrorMill.Engines.Rpg.Items;
 using HorrorMill.Engines.TileEngine.Entities;
 using HorrorMill.Helpers.Xna.Sprites;
 using Microsoft.Xna.Framework;
@@ -31,14 +32,19 @@ namespace HorrorMill.Engines.Rpg.Entities
         public Vector2 PositionMiddleCenter { get { return new Vector2(Position.X + Rectangle.Width/2, Position.Y + Rectangle.Height/2); }}
         public Vector2 Direction { get; set; }
 
-        public int Damage { get { return 30; } }
-        public int HitPoints { get; set; }   // Total hit points
-        public int Health { get; private set; }      // Current Health
+        public Entity Entity { get; private set; }
+        public int Damage { get { return (int)Entity.Damage; } }
+        public int HitPoints { get { return Entity.Health.MaxValue; } }
+        public int Health { get { return Entity.Health.CurrentValue; } }  // Current Health
 
         public Player(Game game) : this(game, new Camera(game, game.GraphicsDevice.Viewport.Bounds)){}
 
         public Player(Game game, Camera camera) : base(game)
         {
+            // Player entity
+            Entity = new Entity(game, "Gandalf", Gender.Male, EntityType.Player, EntityClassManager.GetClasses()["Wizard"], EntityRaceManager.GetRaces()["Human"]);
+            Entity.Inventory.Add(ItemManager.GetItems()["Apprentice's Wand"]);
+            // Camera
             Camera = camera;
             var startingPosition = Camera.Position;
             multiSprite = new MultiSprite(startingPosition, 70);
@@ -51,10 +57,6 @@ namespace HorrorMill.Engines.Rpg.Entities
             multiSprite.States.Add(State.WalkDown.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/WalkDown", new Point(0, 0), new Point(50, 50), new Point(2, 1), SpriteDirection.Right));
             //multiSprite.States.Add(State.Attack.ToString(), new SpriteSheet("SpriteSheets/Player/Wizard/Attack", new Point(0, 0), new Point(140, 160), new Point(2, 1), SpriteDirection.Right));
             multiSprite.CurrentState = State.IdleDown.ToString();
-
-            // Load player characteristics
-            HitPoints = 100;
-            Health = HitPoints;
         }
 
         protected override void LoadContent()
@@ -119,8 +121,7 @@ namespace HorrorMill.Engines.Rpg.Entities
 
         public void TakeDamage(int damage)
         {
-            //TODO add armor stuff and so on?
-            Health -= damage;
+            Entity.TakeDamage(damage);
         }
     }
 }
