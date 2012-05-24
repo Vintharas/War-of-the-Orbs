@@ -18,27 +18,32 @@ namespace HorrorMill.Engines.Rpg.Entities
             Attack
         }
 
-        private int enemyHealth;
-        public int Health { get { return enemyHealth; } }
-        private int enemyDamage;
-        public int Damage { get { return enemyDamage; } }
-        private Vector2 enemyPosition;
-        public Vector2 Position { get { return enemyPosition; } }
+        private int health;
+        public int Health { get { return health; } }
+        private int damage;
+        public int Damage { get { return damage; } }
+        private Vector2 position;
+        public Vector2 Position { get { return position; } }
+        public Vector2 PositionMiddleCenter { get { return new Vector2(Position.X + enemySprite.Rectangle.Width / 2, Position.Y + enemySprite.Rectangle.Height / 2); } }
         private MultiSprite enemySprite;
         private SpriteBatch spriteBatch;
+        private int millisecondsSinceLastAttack = 500;
+        public int DetectionRange { get { return 400; } }
+        public int AttackRange { get { return 300; } }
 
         private bool dead = false;
         public bool Dead { get { return dead; } }
+
 
         public Enemy(Game game) : base(game)
         {
         }
 
-        public void Create(EnemyInformation enemyInfo, Vector2 position)
+        public void Create(EnemyInformation enemyInfo, Vector2 enemyPosition)
         {
-            enemyHealth = enemyInfo.Health;
-            enemyDamage = enemyInfo.Damage;
-            enemyPosition = position;
+            health = enemyInfo.Health;
+            damage = enemyInfo.Damage;
+            position = enemyPosition;
 
             enemySprite = new MultiSprite(position, 70);
             enemySprite.States.Add(State.IdleDown.ToString(), enemyInfo.SpriteIdleDown);
@@ -54,10 +59,50 @@ namespace HorrorMill.Engines.Rpg.Entities
 
         public void TakeDamage(int dmg)
         {
-            enemyHealth -= dmg;
-            if (enemyHealth < 1)
+            health -= dmg;
+            if (health < 1)
             {
                 dead = true;
+            }
+        }
+
+        public bool CanAttack(GameTime gameTime)
+        {   
+            millisecondsSinceLastAttack += gameTime.ElapsedGameTime.Milliseconds;
+            if (millisecondsSinceLastAttack >= 500)
+            {
+                millisecondsSinceLastAttack = 0;
+                return true;
+            }
+
+            return false;
+        }
+
+        public void Move(Vector2 motion)
+        {
+            // if there is no motion, the player sprite is set to an idle state
+            if (motion == Vector2.Zero)
+            {
+                if (enemySprite.PreviousState == State.Walk.ToString())
+                    enemySprite.CurrentState = State.IdleRight.ToString();
+                if (enemySprite.PreviousState == State.WalkDown.ToString())
+                    enemySprite.CurrentState = State.IdleDown.ToString();
+                if (enemySprite.PreviousState == State.WalkUp.ToString())
+                    enemySprite.CurrentState = State.IdleUp.ToString();
+            }
+            else // otherwise update the sprite to reflect the player action
+            {
+                if (motion.Y > 0)
+                    enemySprite.CurrentState = State.WalkDown.ToString();
+                else
+                    enemySprite.CurrentState = State.WalkUp.ToString();
+
+                if (motion.X != 0)
+                    enemySprite.CurrentState = State.Walk.ToString();
+
+                motion.Normalize();
+                enemySprite.Move((int)motion.X, (int)motion.Y);
+                this.position = enemySprite.Position;
             }
         }
 

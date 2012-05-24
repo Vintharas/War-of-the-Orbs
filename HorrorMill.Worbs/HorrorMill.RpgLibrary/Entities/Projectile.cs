@@ -13,21 +13,27 @@ namespace HorrorMill.Engines.Rpg.Entities
         private Viewport viewport;
         private Vector2 speed;
 
+        private Vector2 startingPosition;
+        private int maxDistanceX = 800;
+        private int maxDistanceY = 480;
+
         private SpriteBatch spriteBatch;
 
+        public bool PlayerProjectile { get; set; }
         public bool Active { get; set; }
         public int Damage { get; set; }
         public int Width { get { return this.texture.Width; } }
         public int Height{ get { return this.texture.Height; } }
-
-
-        public Projectile(Game game, string textureName, Vector2 position, int damage, Vector2 speed, Camera camera) : base(game)
+        
+        public Projectile(Game game, string textureName, Vector2 position, int damage, Vector2 speed, bool playerProjectile, Camera camera) : base(game)
         {
             this.textureName = textureName;
             this.position = position;
+            this.startingPosition = this.position;
             this.viewport = game.GraphicsDevice.Viewport;
             Damage = damage;
             this.speed = speed;
+            this.PlayerProjectile = playerProjectile;
             this.camera = camera;
             Active = true;
             speed.Normalize();
@@ -44,18 +50,29 @@ namespace HorrorMill.Engines.Rpg.Entities
         {
             position += speed;
 
-            // Deactivate the bullet if it goes out of screen
-            // TODO: This may not be true, we can allow it to continue and hit enemies that are not
-            // seen by the player but that are there. (like in realms of the mad god)
+            // TODO: Base distance for X and Y on weapon with screen % so weapon have 80% distance on screen X=800 = 640
             Active = IsWithinScreenBoundaries();
         }
 
         private bool IsWithinScreenBoundaries()
         {
-            return position.X - camera.Position.X > 0 &&
-                   position.X + texture.Width/2 - camera.Position.X < viewport.Width &&
-                   position.Y - camera.Position.Y > 0 &&
-                   position.Y + texture.Height/2 - camera.Position.Y < viewport.Height;
+            //Check projectile to Right
+            if (speed.X > 0 && (startingPosition.X + maxDistanceX > position.X))
+                return true;
+            
+            // ...Left
+            if(speed.X < 0 && (startingPosition.X - maxDistanceX < position.X))
+                return true;
+
+            // ...Down
+            if (speed.Y > 0 && (startingPosition.Y + maxDistanceY > position.Y))
+                return true;
+
+            // ...Up
+            if (speed.Y < 0 && (startingPosition.Y - maxDistanceY < position.Y))
+                return true;
+
+            return false;
         }
 
         public override void Draw(GameTime gameTime)

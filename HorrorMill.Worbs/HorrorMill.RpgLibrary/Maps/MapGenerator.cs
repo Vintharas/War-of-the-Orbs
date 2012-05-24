@@ -82,7 +82,6 @@ namespace HorrorMill.Engines.Rpg.Maps
                 enemies.Add(enemy);
             }
 
-
             return new TileMap(camera.Game, mapInformation.TileSets, mapLayers, camera);
         }
 

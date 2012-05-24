@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="Entities\Attributes.cs" />
     <Compile Include="Entities\Enemy.cs" />
+    <Compile Include="Entities\EnemyAI.cs" />
     <Compile Include="Entities\EnemyInformation.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="Entities\EntityClass.cs" />

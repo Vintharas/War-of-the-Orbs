@@ -144,5 +144,11 @@ namespace HorrorMill.Helpers.Xna.Sprites
             else if (x < 0)
                 movementDirection = SpriteDirection.Left;
         }
+
+        public void UndoMove(int x, int y)
+        {
+            position.X += x;
+            position.Y += y;
+        }
     }
 }

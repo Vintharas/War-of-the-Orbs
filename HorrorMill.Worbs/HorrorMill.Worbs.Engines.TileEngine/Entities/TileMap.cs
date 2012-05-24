@@ -75,8 +75,8 @@ namespace HorrorMill.Engines.TileEngine.Entities
 
         public override void Draw(GameTime gameTime)
         {
-            DrawBeforePlayer(gameTime);
-            //DrawAfterPlayer(gameTime); TODO MapLayer always put tile everywhere so whe addind a new layer that should be on top it overwrites everything
+            //DrawBeforePlayer(gameTime);
+            //DrawAfterPlayer(gameTime);// TODO MapLayer always put tile everywhere so whe addind a new layer that should be on top it overwrites everything
             base.Draw(gameTime);
         }
 
@@ -115,12 +115,15 @@ namespace HorrorMill.Engines.TileEngine.Entities
                     for (int x = min.X; x < max.X; x++)
                     {
                         tile = layer[x, y];
-                        destination.X = x * TheTileEngine.TileWidth;
-                        spriteBatch.Draw(
-                            tileSets[tile.TileSet].Texture,  // Tileset spritesheet
-                            destination,                     // Position in the screen where to put the tile
-                            tileSets[tile.TileSet].SourceRectangles[tile.TileIndex],  // Tile sprite position in the Tileset spritesheet
-                            Color.White);
+                        if (tile != null)
+                        {
+                            destination.X = x * TheTileEngine.TileWidth;
+                            spriteBatch.Draw(
+                                tileSets[tile.TileSet].Texture,  // Tileset spritesheet
+                                destination,                     // Position in the screen where to put the tile
+                                tileSets[tile.TileSet].SourceRectangles[tile.TileIndex],  // Tile sprite position in the Tileset spritesheet
+                                Color.White);
+                        }
                     }
                 }
             }

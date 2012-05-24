@@ -48,7 +48,8 @@ namespace HorrorMill.Worbs.Scenes
             camera.LockToSpriteRectangle(player.Rectangle);
             // Player Attack
             if (AttackControl.Attacking)
-                theWorldOfWorbs.CurrentLevel.AddProjectile(player.PositionMiddleCenter);
+                theWorldOfWorbs.CurrentLevel.AddProjectile(player.PositionMiddleCenter, player.Direction, player.Damage, true);
+
             // Update map, enemies, projectiles, etc
             base.Update(gameTime);
             // Update health bar

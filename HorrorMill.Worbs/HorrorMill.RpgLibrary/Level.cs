@@ -42,21 +42,37 @@ namespace HorrorMill.Engines.Rpg
             bool mapCollision = map.CheckCollision(player.Rectangle);
             if (mapCollision)
             {
-                player.TakeDamage(10);
+                player.UndoMove();
             }
 
-            //Check collision for Projectile on Enemies
+            //Check collision for Projectile on...
             foreach (Projectile p in levelComponents.OfType<Projectile>().ToList())
             {
+                //... Enemies
                 foreach (Enemy e in levelComponents.OfType<Enemy>().ToList())
                 {
-                    if (e.CollisionRectangle.Intersects(p.CollisionRectangle) && e.Visible)
+                    if (p.PlayerProjectile && e.CollisionRectangle.Intersects(p.CollisionRectangle) && e.Visible)
                     {
                         e.TakeDamage(player.Damage);
                         p.Active = false;
                     }
                 }
+
+                //... Player
+                if(!p.PlayerProjectile && p.CollisionRectangle.Intersects(player.Rectangle)) 
+                {
+                    player.TakeDamage(p.Damage);
+                    p.Active = false;
+                }
+
+                //... Map
+                bool mapProjectileCollision = map.CheckCollision(p.CollisionRectangle);
+                if (mapProjectileCollision)
+                {
+                    p.Active = false;
+                }
             }
+            
             //Check collision for Enemy
             foreach (Enemy e in levelComponents.OfType<Enemy>().ToList())
             {
@@ -68,17 +84,45 @@ namespace HorrorMill.Engines.Rpg
                 }
             }
 
+            //Try to make Enemy kill you
+            foreach (Enemy e in levelComponents.OfType<Enemy>().ToList())
+            {
+                if (EnemyAI.IsPlayerInRange(e.DetectionRange, player.Position, e.Position))
+                {
+                    //Attack
+                    Vector2 direction = EnemyAI.GetAttackDirection(player.PositionMiddleCenter, e.PositionMiddleCenter);
+                    if (EnemyAI.IsPlayerInRange(e.AttackRange, player.Position, e.Position) && direction != Vector2.Zero)
+                    {
+                        if (e.CanAttack(gameTime))
+                        {
+                            AddProjectile(e.PositionMiddleCenter, direction, e.Damage, false);
+                            e.Move(Vector2.Zero); //Improve this so we get the right sprite
+                        }
+                    }
+                    //Move to player
+                    else
+                    {
+                        Vector2 moveDirection = EnemyAI.GetMovementDirection(player.PositionMiddleCenter, e.PositionMiddleCenter);
+                        e.Move(moveDirection);
+                    }
+                }
+                //else add else for random movement?
+            }
+
             //Do some cleaning
             CleanDiedEnemies();
             CleanProjectilesOutOfView();
+
             // Update level game components
             foreach (var levelComponent in levelComponents)
                 levelComponent.Update(gameTime);
+
             base.Update(gameTime);
         }
 
         public override void Draw(GameTime gameTime)
         {
+            map.DrawBeforePlayer(gameTime);
             foreach (var levelComponent in levelComponents)
             {
                 if (levelComponent is DrawableGameComponent)
@@ -86,9 +130,9 @@ namespace HorrorMill.Engines.Rpg
                     (levelComponent as DrawableGameComponent).Draw(gameTime);
                 }
             }
+            map.DrawAfterPlayer(gameTime);
             base.Draw(gameTime);
         }
-
 
         private void CleanDiedEnemies()
         {
@@ -99,11 +143,12 @@ namespace HorrorMill.Engines.Rpg
             }
         }
 
-        public void AddProjectile(Vector2 position)
+        public void AddProjectile(Vector2 position, Vector2 direction, int damage, bool playerProjectile)
         {
-            var projectileSpeed = player.Direction * 10;
+            //var projectileSpeed = player.Direction * 10;
+            var projectileSpeed = direction*10;
             // TODO: need to tie the projectile speed to the player's weapon somehow
-            Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, player.Damage, projectileSpeed, player.Camera);
+            Projectile p = new Projectile(this.Game, "SpriteSheets/Projectiles/fire", position, damage, projectileSpeed, playerProjectile, player.Camera);
             p.Initialize();
             this.levelComponents.Add(p);
         }

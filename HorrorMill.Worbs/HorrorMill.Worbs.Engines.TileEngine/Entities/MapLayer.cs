@@ -29,7 +29,7 @@ namespace HorrorMill.Engines.TileEngine.Entities
             map = new Tile[height, width];
             for (int y = 0; y < height; y++)
                 for (int x = 0; x < width; x++)
-                    map[y, x] = new Tile(0, 0);
+                    map[y, x] = null;//new Tile(0, 0);
         }
 
         public Tile this[int x, int y]
@@ -46,7 +46,7 @@ namespace HorrorMill.Engines.TileEngine.Entities
                 tilesWithCollision = new List<CollisionTile>();
                 for (int y = 0; y < Height; y++)
                     for (int x = 0; x < Width; x++)
-                        if (map[y, x].Collision)
+                        if (map[y, x] != null && map[y, x].Collision)
                         {
                             tilesWithCollision.Add(
                                 new CollisionTile
@@ -67,6 +67,5 @@ namespace HorrorMill.Engines.TileEngine.Entities
     {
         public Tile Tile { get; set; }
         public Rectangle CollisionRectangle { get; set; }
-
     }
 }

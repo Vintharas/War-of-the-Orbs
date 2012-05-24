@@ -105,7 +105,14 @@ namespace HorrorMill.Engines.Rpg.Entities
                 motion = motion*Camera.Speed;
                 motion = LockToMap(motion);
                 multiSprite.Move((int)motion.X, (int)motion.Y);
+                lastMotion = motion;
             }
+        }
+
+        private Vector2 lastMotion;
+        public void UndoMove()
+        {
+            multiSprite.UndoMove((int)(-1*lastMotion.X), (int)(-1*lastMotion.Y));
         }
 
         private Vector2 LockToMap(Vector2 motion)
