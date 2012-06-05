@@ -18,21 +18,23 @@ namespace HorrorMill.Engines.Rpg.Entities
             Attack
         }
 
-        private int health;
-        public int Health { get { return health; } }
-        private int damage;
-        public int Damage { get { return damage; } }
+        public Entity Entity { get; private set; }
+        public int Health { get { return Entity.Health.CurrentValue; } }
+        public float Damage { get { return Entity.Damage; } }
+
         private Vector2 position;
         public Vector2 Position { get { return position; } }
         public Vector2 PositionMiddleCenter { get { return new Vector2(Position.X + enemySprite.Rectangle.Width / 2, Position.Y + enemySprite.Rectangle.Height / 2); } }
+
         private MultiSprite enemySprite;
         private SpriteBatch spriteBatch;
-        private int millisecondsSinceLastAttack = 500;
-        public int DetectionRange { get { return 400; } }
-        public int AttackRange { get { return 300; } }
 
-        private bool dead = false;
-        public bool Dead { get { return dead; } }
+        private int millisecondsSinceLastAttack = 500;  // based on equipped weapon
+        public int DetectionRange { get { return 400; } } // based on entity -> perception? cunning?
+        public int AttackRange { get { return 300; } } // based on equipped weapon
+
+        public bool Dead { get { return Entity.Health.CurrentValue < 1; } }
+
 
 
         public Enemy(Game game) : base(game)
@@ -41,8 +43,7 @@ namespace HorrorMill.Engines.Rpg.Entities
 
         public void Create(EnemyInformation enemyInfo, Vector2 enemyPosition)
         {
-            health = enemyInfo.Health;
-            damage = enemyInfo.Damage;
+            Entity = enemyInfo.Entity;
             position = enemyPosition;
 
             enemySprite = new MultiSprite(position, 70);
@@ -57,13 +58,9 @@ namespace HorrorMill.Engines.Rpg.Entities
             enemySprite.CurrentState = State.IdleDown.ToString();
         }
 
-        public void TakeDamage(int dmg)
+        public void TakeDamage(float damage)
         {
-            health -= dmg;
-            if (health < 1)
-            {
-                dead = true;
-            }
+            Entity.TakeDamage((int)damage);
         }
 
         public bool CanAttack(GameTime gameTime)
@@ -101,6 +98,7 @@ namespace HorrorMill.Engines.Rpg.Entities
                     enemySprite.CurrentState = State.Walk.ToString();
 
                 motion.Normalize();
+                motion = motion*Entity.Speed;
                 enemySprite.Move((int)motion.X, (int)motion.Y);
                 this.position = enemySprite.Position;
             }

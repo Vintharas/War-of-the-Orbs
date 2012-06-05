@@ -21,11 +21,11 @@ namespace HorrorMill.Engines.Rpg.Entities
 
         public bool PlayerProjectile { get; set; }
         public bool Active { get; set; }
-        public int Damage { get; set; }
+        public float Damage { get; set; }
         public int Width { get { return this.texture.Width; } }
         public int Height{ get { return this.texture.Height; } }
         
-        public Projectile(Game game, string textureName, Vector2 position, int damage, Vector2 speed, bool playerProjectile, Camera camera) : base(game)
+        public Projectile(Game game, string textureName, Vector2 position, float damage, Vector2 speed, bool playerProjectile, Camera camera) : base(game)
         {
             this.textureName = textureName;
             this.position = position;

@@ -110,7 +110,7 @@ namespace HorrorMill.Engines.Rpg
             }
 
             //Do some cleaning
-            CleanDiedEnemies();
+            CleanDeadEnemies();
             CleanProjectilesOutOfView();
 
             // Update level game components
@@ -134,7 +134,7 @@ namespace HorrorMill.Engines.Rpg
             base.Draw(gameTime);
         }
 
-        private void CleanDiedEnemies()
+        private void CleanDeadEnemies()
         {
             foreach (Enemy e in levelComponents.OfType<Enemy>().ToList())
             {
@@ -143,7 +143,7 @@ namespace HorrorMill.Engines.Rpg
             }
         }
 
-        public void AddProjectile(Vector2 position, Vector2 direction, int damage, bool playerProjectile)
+        public void AddProjectile(Vector2 position, Vector2 direction, float damage, bool playerProjectile)
         {
             //var projectileSpeed = player.Direction * 10;
             var projectileSpeed = direction*10;

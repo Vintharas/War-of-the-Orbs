@@ -4,25 +4,17 @@ namespace HorrorMill.Engines.Rpg.Entities
 {
     public class EnemyInformation
     {
+        private readonly Entity entity;
         private string name;
-        private int health;
-        private int damage;
-        private int armor;
 
-        public EnemyInformation(string enemyName, int enemyHealth, int enemyDamage)
+        public EnemyInformation(string name, Entity entity)
         {
-            name = enemyName;
-            health = enemyHealth;
-            damage = enemyDamage;
+            this.name = name;
+            this.entity = entity;
         }
 
         public string Name { get { return name; } }
-
-        public int Health { get { return health; } }
-
-        public int Damage { get { return damage; } }
-
-        public int Armor { get { return armor; } }
+        public Entity Entity { get { return entity; } }
 
         private SpriteSheet spriteIdleDown;
         public SpriteSheet SpriteIdleDown { get { return spriteIdleDown; } set { spriteIdleDown = value; } }

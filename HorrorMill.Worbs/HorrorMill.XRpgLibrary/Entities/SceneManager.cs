@@ -15,15 +15,18 @@ namespace HorrorMill.Helpers.Xna.Entities
             get { return activeScene; }
             protected set
             {
-                // disable previous scene
-                if (activeScene != null)
+                if (value != null)
                 {
-                    activeScene.Enabled = false;
-                    activeScene.Visible = false;
+                    // disable previous scene
+                    if (activeScene != null)
+                    {
+                        activeScene.Enabled = false;
+                        activeScene.Visible = false;
+                    }
+                    activeScene = value;
+                    activeScene.Enabled = true;
+                    activeScene.Visible = true;
                 }
-                activeScene = value;
-                activeScene.Enabled = true;
-                activeScene.Visible = true;
             }
         }
 

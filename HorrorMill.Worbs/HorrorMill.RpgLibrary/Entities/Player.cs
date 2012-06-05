@@ -102,7 +102,7 @@ namespace HorrorMill.Engines.Rpg.Entities
                     multiSprite.CurrentState = State.Walk.ToString();
 
                 motion.Normalize();
-                motion = motion*Camera.Speed;
+                motion = motion*Entity.Speed;
                 motion = LockToMap(motion);
                 multiSprite.Move((int)motion.X, (int)motion.Y);
                 lastMotion = motion;
@@ -126,9 +126,9 @@ namespace HorrorMill.Engines.Rpg.Entities
             return newPosition - previousPosition;
         }
 
-        public void TakeDamage(int damage)
+        public void TakeDamage(float damage)
         {
-            Entity.TakeDamage(damage);
+            Entity.TakeDamage((int)damage); // TODO: use float health, instead of int
         }
     }
 }

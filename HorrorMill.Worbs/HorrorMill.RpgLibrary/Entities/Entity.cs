@@ -68,7 +68,7 @@ namespace HorrorMill.Engines.Rpg.Entities
             Health = CalculateVariableAttributeFromFormula(@class.HealthFormula);
             Mana = CalculateVariableAttributeFromFormula(@class.ManaFormula);
             Stamina = CalculateVariableAttributeFromFormula(@class.StaminaFormula);
-            Speed = CalculateFromFormula(@class.DefenseFormula);
+            Speed = MathHelper.Clamp(CalculateFromFormula(@class.SpeedFormula), 1f, 6f);
             BaseAttack = CalculateFromFormula(@class.AttackFormula);
             BaseDamage = CalculateFromFormula(@class.DamageFormula);
             BaseDefense = CalculateFromFormula(@class.DefenseFormula);

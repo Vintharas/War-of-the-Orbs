@@ -29,7 +29,7 @@ namespace HorrorMill.Engines.Rpg.Entities
                                                           },
                                          HealthFormula = "20|CON|12",
                                          StaminaFormula = "12|WIL|12",
-                                         SpeedFormula = "12|DEX|12",
+                                         SpeedFormula = "0|DEX|0",
                                          ManaFormula = "0|0|0",
                                          AttackFormula = "12|DEX|12",
                                          DefenseFormula = "12|DEX|12",
@@ -50,7 +50,7 @@ namespace HorrorMill.Engines.Rpg.Entities
                                         HealthFormula = "10|CON|10",
                                         StaminaFormula = "0|0|0",
                                         ManaFormula = "20|INT|12",
-                                        SpeedFormula = "12|DEX|12",
+                                        SpeedFormula = "0|DEX|0",
                                         AttackFormula = "10|DEX|10",
                                         DefenseFormula = "10|DEX|10",
                                         DamageFormula = "10|STR|10"
