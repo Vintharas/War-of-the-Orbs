@@ -8,13 +8,14 @@ namespace HorrorMill.Helpers.Xna.UI
     {
 
         private string textureName;
+        private string buttonName;
         private Texture2D texture;
 
         private SpriteBatch spriteBatch;
 
         private Vector2 position;
 
-        private string ClickActionName { get { return "ClickOn" + textureName; } }
+        private string ClickActionName { get { return "ClickOn" + buttonName; } }
         protected override Rectangle ClickableArea { get { return clickableArea; } }
         private Rectangle clickableArea;
 
@@ -29,8 +30,9 @@ namespace HorrorMill.Helpers.Xna.UI
             }
         }
 
-        public GraphicButton(Game game, string textureName, Vector2 position) : base(game)
+        public GraphicButton(Game game, string buttonName, string textureName, Vector2 position) : base(game)
         {
+            this.buttonName = buttonName;
             this.textureName = textureName;
             this.position = position;
         }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using HorrorMill.HorrorMill.Helpers.Xna.Inputs;
 using Microsoft.Xna.Framework;
 
@@ -21,7 +22,6 @@ namespace HorrorMill.Helpers.Xna.UI
 
         public void AddControl(Control control)
         {
-            control.GameInput = gameInput;
             controls.Add(control);
         }
 
@@ -29,6 +29,8 @@ namespace HorrorMill.Helpers.Xna.UI
         {
             foreach (var c in controls)
                 c.Initialize();
+            foreach (var c in controls.OfType<Control>())
+                c.GameInput = gameInput;
             base.Initialize();
         }
 
