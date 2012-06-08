@@ -75,6 +75,27 @@ namespace HorrorMill.Engines.Rpg.Entities
             return false;
         }
 
+        public void AttackToDirection(Vector2 direction)
+        {
+            if (direction.X == 1)
+            {
+                enemySprite.CurrentState = State.IdleRight.ToString();
+            }
+            else if (direction.X == -1)
+            {
+                enemySprite.CurrentState = State.IdleLeft.ToString();
+            }
+            else if (direction.Y == 1)
+            {
+                enemySprite.CurrentState = State.IdleDown.ToString();
+            }
+            else if (direction.Y == -1)
+            {
+                enemySprite.CurrentState = State.IdleUp.ToString();
+            }
+
+        }
+
         public void Move(Vector2 motion)
         {
             // if there is no motion, the player sprite is set to an idle state

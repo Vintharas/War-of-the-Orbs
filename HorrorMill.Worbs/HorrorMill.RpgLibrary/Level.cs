@@ -96,7 +96,8 @@ namespace HorrorMill.Engines.Rpg
                         if (e.CanAttack(gameTime))
                         {
                             AddProjectile(e.PositionMiddleCenter, direction, e.Damage, false);
-                            e.Move(Vector2.Zero); //Improve this so we get the right sprite
+                            //e.Move(Vector2.Zero); //Improve this so we get the right sprite
+                            e.AttackToDirection(direction);
                         }
                     }
                     //Move to player
