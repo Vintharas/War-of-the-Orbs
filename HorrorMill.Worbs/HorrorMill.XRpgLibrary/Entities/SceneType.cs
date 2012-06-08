@@ -5,6 +5,7 @@ namespace HorrorMill.Helpers.Xna.Entities
         Menu,
         Game,
         Options,
-        Exit
+        Exit,
+        Inventory
     }
 }

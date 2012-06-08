@@ -10,10 +10,10 @@ namespace HorrorMill.Worbs.Scenes
 {
     public class GameScene : Scene
     {
+        public static Player Player { get; private set; } // TODO: sacrilege!
+
         // Separate UI from actual game -> UI in GameScene, game within World/Level structure
         private WorbsWorld theWorldOfWorbs;
-
-        private Player player;
         private Camera camera;
 
         private GameControls controls;
@@ -27,33 +27,39 @@ namespace HorrorMill.Worbs.Scenes
             // Initialize camera and player
             camera = new Camera(game, new Rectangle(0, 0, 800, 480)); // TODO: Fix this so it is not hardcoded -> GraphicsDevice is not initialized at this point, need to wrap it somehow (perhaps add it as a service) so the camera will access it later when it's initialized 
             // Player
-            player = new Player(game, camera);
+            Player = new Player(game, camera);
             // World
-            theWorldOfWorbs = new WorbsWorld(game, player);
+            theWorldOfWorbs = new WorbsWorld(game, Player);
             SceneComponents.Add(theWorldOfWorbs);
             //User interface
             controls = new GameControls(game);
-            GraphicButton menuButton = new GraphicButton(game, "Sprites/menu-button-30", new Vector2(760, 10));
-            controls.AddControl(menuButton);
+            GraphicButton inventoryButton = new GraphicButton(game, "ShowInventory", "Sprites/menu-button-30", new Vector2(760, 10));
+            controls.AddControl(inventoryButton);
+            inventoryButton.Clicked += ShowInventory;
             StaticSceneComponents.Add(controls);
-            playerHealthBar = new HealthBar(game, "Sprites/player-health-bar", "Sprites/blood-stream", new Vector2(10, 10), player.Health);
+            playerHealthBar = new HealthBar(game, "Sprites/player-health-bar", "Sprites/blood-stream", new Vector2(10, 10), Player.Health);
             StaticSceneComponents.Add(playerHealthBar);
+        }
+
+        private void ShowInventory()
+        {
+            RaiseSwitchScene(SceneType.Inventory);
         }
 
         public override void Update(GameTime gameTime)
         {
             // Update the status of the game based on user input
             // Move player
-            player.Move(CrossControl.Motion);
-            camera.LockToSpriteRectangle(player.Rectangle);
+            Player.Move(CrossControl.Motion);
+            camera.LockToSpriteRectangle(Player.Rectangle);
             // Player Attack
             if (AttackControl.Attacking)
-                theWorldOfWorbs.CurrentLevel.AddProjectile(player.PositionMiddleCenter, player.Direction, player.Damage, true);
+                theWorldOfWorbs.CurrentLevel.AddProjectile(Player.PositionMiddleCenter, Player.Direction, Player.Damage, true);
 
             // Update map, enemies, projectiles, etc
             base.Update(gameTime);
             // Update health bar
-            playerHealthBar.CurrentHealth = player.Health;
+            playerHealthBar.CurrentHealth = Player.Health;
         }
 
         public override void BeginDraw()
@@ -64,7 +70,7 @@ namespace HorrorMill.Worbs.Scenes
                               BlendState.AlphaBlend, 
                               SamplerState.PointClamp, 
                               null, null, null,
-                              player.Camera.Transformation);
+                              Player.Camera.Transformation);
         }
 
 
